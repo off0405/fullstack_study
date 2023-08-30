@@ -1,0 +1,63 @@
+ctrl + / = 주석 삽입
+
+탭Tab 간격 조정 - 하단 Spaces 클릭 - Indent Using Tabs - 원하는거 클릭
+
+F1 = 명령 팔레트? 
+
+ctrl + , = 설정
+
+ctrl + c = 라인 복사
+
+정리된 코드 만들기(alt + shift + f) : 코드 정렬기능 권장x,
+의존도가 높아지면 안좋음. 처음부터 깔끔하게 작업하는 습관을 들이는 것이 좋다. 코드가 지저분하면 가독성이 떨어지고,
+에러 발생 확률 증가
+
+태그 이름 한번에 변경 (앞/뒤 말하는것) (Settings - linked editing)
+
+브라우저에 출력하기 (Extensions) -> liver server 설치
+실행 방법 alt + l + o
+Live server 기능은 개발을 위해 임시로 로컬(자신의 컴퓨터 환경) 서버를 오픈
+외부 사람들이 접속하게 하려면 해당 프로젝트를 카페24, AWS 등 호스팅 서버에 업로드
+------------------------------------
+Git (https://git-scm.com/)
+
+win + R = 실행창
+-> cmd =명령 프롬포트
+- git 버전 확인 = "git --version"
+
+
+github
+->git 클라우드 사이트 중 하나
+off0405@naver.com / rud5838!!
+
+win + R -> cmd
+# 사용자 정보
+## 커밋(버전 생성)을 위한 정보 등록
+git config --global user.name 'YOUR_NAME'
+git config --global user.email 'YOUR_EMAIL'
+
+# 구성 확인
+ git config --global --list
+
+
+ctrl + ~ = 터미널 창 단축키
+
+VS Code에서 git 명령 넣기
+터미널 실행 (ctrl + ~ ) -> Powershell을 command(cmd)로 바꾸기
+
+<<깃 시작!!!.>>
+git init
+
+<<<깃허브에 저장하는 순서입니다.>>>>
+git add .
+git commit -m "이름"
+git push origin main
+
+<<깃 연결>>
+git remote add origin http://~
+git push origin master
+
+
+F1 -> git clone -> url 입력 -> 폴더 입력
+git pull origin master (원격 저장소의 master 브랜치 내역 당겨오기)
+
