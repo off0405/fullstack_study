@@ -1,0 +1,9 @@
+/* 4. import 방식: css 내에서 다른 css 파일을 가져와 연결 */
+/* main.css파일의 해석이 끝나고 가져옴(해석 속도 느림, 일반적인 경우 권장하지 않는다) */
+@import url("./box.css");
+
+div {
+  font-size: 50px;
+  color: blue;
+  text-decoration: underline;
+}

@@ -1,0 +1,5 @@
+/* 4. import 방식: css 내에서 다른 css 파일을 가져와 연결 */
+.box {
+  background-color: aqua;
+  padding: 20px;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <br><br>
+  <label for="name">고객명:</label>
+  <input type="text" id="name">
+  <br>
+  <label for="phone">전화번호:</label>
+  <input type="text" id="phone">
+  <br>
+  <label for="email">E-mail:</label>
+  <input type="email" id="email">
+  <br>
+  <label for="size">피자선택:</label>
+  <select id="size">
+    <option value="choice">피자를 선택하세요</option>
+    <option value="small">small</option>
+    <option value="medium">medium</option>
+    <option value="large">large</option>
+  </select>
+  <br><hr><br>
+
+  <label for="select">피자 사이즈</label><br>
+  <input type="radio" name="sizes" checked>Small
+  <br>
+  <input type="radio" name="sizes">Medium
+  <br>
+  <input type="radio" name="sizes">Large
+
+  <br><hr><br>
+
+  <label for="topping">토핑 선택</label><br>
+  <input type="checkbox">베이컨<br>
+  <input type="checkbox">치즈<br>
+  <input type="checkbox">양파<br>
+  <input type="checkbox">버섯<br>
+
+  <br><hr><br>
+
+  <label for="time">희망배송 시간:</label>
+  <input type="time">
+
+  <br><br>
+  <label for="multi">배송시 요청사항</label>
+  <textarea id="multi" cols="30" rows="10"></textarea>
+
+  <br> 
+  <button>주문하기</button>
+</body>
+</html>
+
+
+
+Q. <label for=""></label>
+<!-- label "for"과 input "type"의 차이점? -->
