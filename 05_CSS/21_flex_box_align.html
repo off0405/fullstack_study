@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .flex-container {
+      display: flex;
+      background-color: pink;
+    }
+
+    .flex-container > div {
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      margin: 10px;
+      text-align: center;
+      font-size: 30px;
+      background-color: olive;
+    }
+
+    .flex-nowrap {
+      flex-wrap: nowrap;
+    }
+    
+    .flex-wrap {
+      flex-wrap: wrap;
+    }
+
+/* -------------------------------------------------------------------- */
+    .jusitfy-content-start {
+      justify-content: flex-start;
+    }
+
+    .jusitfy-content-end {
+      justify-content: flex-end;
+    }
+
+    .jusitfy-content-center {
+      justify-content: center;
+    }
+
+    .jusitfy-content-between {
+      justify-content: space-between;
+    }
+
+    .jusitfy-content-around {
+      justify-content: space-around;
+    }
+
+    .jusitfy-content-evenly {
+      justify-content: space-evenly;
+    }
+/* ----------------------------------------------------------------------------- */
+    .h-600px {
+      height: 600px;
+    }
+    
+    .h-auto {
+      height: auto !important;
+    }
+
+    .align-content-start {
+      align-content: flex-start;
+    }
+
+    .align-content-center {
+      align-content: center;
+    }
+
+    .align-content-end {
+      align-content: flex-end;
+    }
+/* ----------------------------------------------------------------------------- */
+
+    .align-items-start {
+      align-items: flex-start;
+    }
+    
+    .align-items-center {
+      align-items: center;
+    }
+    
+    .align-items-end {
+      align-items: flex-end;
+    }
+
+  </style>
+
+
+
+</head>
+<body>
+  <!-- (참고) flex box를 사용하면 Flex Item(자식 요소)들은 블록 요소로 변경됨 -->
+  <h1>flex-wrap: 줄바꿈 여부를 지정</h1>
+  <h2>nowrap; (기본값, 줄바꿈 없음)</h2>
+  <h3>기본적으로 Flex Container는 한 줄에서 모든 아이템들을 표시하려고 시도한다.</h3>
+  <div class="flex-container flex-nowrap">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+  </div>
+
+  <h2>wrap; (자동 줄바꿈 시도)</h2>
+  <div class="flex-container flex-wrap">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+  </div>
+
+  <h1>justify-content: 주축의 정렬 방법, 보통 요소의 수평 정렬에 자주 사용</h1>
+  <h2>flex-start; (기본값)</h2>
+  <div class="flex-container jusitfy-content-start">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+
+  <h2>flex-end; (오른쪽정렬)</h2>
+  <div class="flex-container jusitfy-content-end">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+
+  <h2>center; (중앙정렬)</h2>
+  <div class="flex-container jusitfy-content-center">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+
+  <h2>space-between; (요소 사이 동일한 간격 유지)</h2>
+  <div class="flex-container jusitfy-content-between">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+
+  <h2>space-around; (요소 주위 동일한 간격 유지)</h2>
+  <div class="flex-container jusitfy-content-around">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+
+  <h2>space-evenly; (요소 사이와 주위 동일한 간격 유지)</h2>
+  <div class="flex-container jusitfy-content-evenly">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+
+
+  <h1>align:content: 교차축의 여러 줄 정렬 방법</h1>
+  <!-- 동작 조건:
+      1. 2줄 이상일때만 적용 =>flex-wrap: wrap;
+      2. 정렬이 가능한 충분한 높이 밑 여백이 있어야 함-->
+
+  <h2>stretch; (기본값)</h2>
+  <h3>Flex Item에 height 값이 없으면 한 줄에서 최대한 늘려서 사용</h3>
+  <h4>h-auto 클래스 넣었을 때와 뺐을 때 비교</h4>
+  <div class="flex-container flex-wrap h-600px">
+    <div class="h-auto">1</div>
+    <div class="h-auto">2</div>
+    <div class="h-auto">3</div>
+    <div class="h-auto">4</div>
+    <div class="h-auto">5</div>
+    <div class="h-auto">6</div>
+  </div>
+
+  <h4>flex-start</h4>
+  <div class="flex-container flex-wrap h-600px align-content-start">
+    <div class="h-auto">1</div>
+    <div class="h-auto">2</div>
+    <div class="h-auto">3</div>
+    <div class="h-auto">4</div>
+    <div class="h-auto">5</div>
+    <div class="h-auto">6</div>
+  </div>
+
+  <h4>center</h4>
+  <div class="flex-container flex-wrap h-600px align-content-center">
+    <div class="h-auto">1</div>
+    <div class="h-auto">2</div>
+    <div class="h-auto">3</div>
+    <div class="h-auto">4</div>
+    <div class="h-auto">5</div>
+    <div class="h-auto">6</div>
+  </div>
+
+  <h4>flex-end</h4>
+  <div class="flex-container flex-wrap h-600px align-content-end">
+    <div class="h-auto">1</div>
+    <div class="h-auto">2</div>
+    <div class="h-auto">3</div>
+    <div class="h-auto">4</div>
+    <div class="h-auto">5</div>
+    <div class="h-auto">6</div>
+  </div>
+
+  <!--------------------------------------------------------------------------------------------->
+  <h1>align-items: 교차축의 한 줄 정렬 방법</h1>
+  <h2>stretch; (기본값)</h2>
+  <h3>Flex Item에 height 값이 없으면 한 줄에서 최대한 늘려서 사용</h3>
+  <h4>h-auto 클래스 넣었을 때와 뺐을 때 비교</h4>
+  <div class="flex-container flex-wrap h-600px align-items-start">
+    <div class="h-auto">1</div>
+    <div class="h-auto">2</div>
+    <div class="h-auto">3</div>
+    <div class="h-auto">4</div>
+    <div class="h-auto">5</div>
+    <div class="h-auto">6</div>
+  </div>
+
+  <h4>flex-start</h4>
+  <div class="flex-container flex-wrap h-600px align-items-center">
+    <div class="h-auto">1</div>
+    <div class="h-auto">2</div>
+    <div class="h-auto">3</div>
+    <div class="h-auto">4</div>
+    <div class="h-auto">5</div>
+    <div class="h-auto">6</div>
+  </div>
+
+  <h4>center</h4>
+  <div class="flex-container flex-wrap h-600px align-items-end">
+    <div class="h-auto">1</div>
+    <div class="h-auto">2</div>
+    <div class="h-auto">3</div>
+    <div class="h-auto">4</div>
+    <div class="h-auto">5</div>
+    <div class="h-auto">6</div>
+  </div>
+  <!--------------------------------------------------------------------------------------------->
+  <h1>align-items 활용</h1>
+  <h2>한 줄만 있어도 동작하기에 수직 정렬에 자주 사용</h2>
+  <p>class 값만 바꿔가면서 실습해보기~</p>
+
+  <h2>flex-start;</h2>
+  <div class="flex-container h-600px align-items-start ">
+    <div class="h-auto">1</div>
+    <div class="h-auto">2</div>
+    <div class="h-auto">3</div>
+  </div>
+
+  
+  <h2>flex-center;</h2>
+  <div class="flex-container h-600px align-items-center ">
+    <div class="h-auto">1</div>
+    <div class="h-auto">2</div>
+    <div class="h-auto">3</div>
+  </div>
+
+  
+  <h2>flex-end;</h2>
+  <div class="flex-container h-600px align-items-end ">
+    <div class="h-auto">1</div>
+    <div class="h-auto">2</div>
+    <div class="h-auto">3</div>
+  </div>
+
+  <!-- Tip! flex를 이용한 완벽한 정중앙 정렬 -->
+  <!-- Quiz. 연습을 위해 인라인 스타일로 직접 작성 -->
+  <h1>정중앙 정렬 해보긔</h1>
+  <div class="flex-container h-600px"
+    style="align-items: center;  justify-content: center">
+    <div>1</div>
+  </div>
+
+  <!-- --------------------------------------------------- -->
+  h1
+</body>
+</html>

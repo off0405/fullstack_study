@@ -51,6 +51,25 @@
       background-color: coral;
     }
 
+    .wrapper {
+      position: relative;
+      width: 800px;
+      height: 400px;
+      background-color: royalblue;
+    }
+
+    .box{
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+
   </style>
 </head>
 <body>
@@ -60,6 +79,12 @@
       <div class="child-2">2</div>
       <div class="child-3">3</div>
     </div>
+  </div>
+
+  <br><br>
+  <!-- Tip! absolute 가 적용된 요소의 수평, 수직 가운데 배치 -->
+  <div class="wrapper">
+    <div class="box"></div>
   </div>
 </body>
 </html>

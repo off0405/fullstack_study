@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .text-input {
+      width: 120px;
+      padding: 10px;
+      font-size: 20px;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+    }
+    /* <!-- ----------------------------------------------------------------------- --> */
+
+
+    .form-background {
+      width: 100%;
+      background-color: black;
+      position: relative;
+      padding: 0.1px;
+    }
+
+    .form-container {
+      width: 1000px;
+      height: 700px;
+      background-color: white;
+      margin: 100px auto;
+      display: flex;
+    }
+
+    form {
+      width: 800px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 30px;
+    }
+
+    .title {
+      font-size: 20px;
+    }
+
+    .box {
+      width: 100%;
+      display: block;
+      font-size: 30px;
+      margin: 20px 0;
+      padding: 10px;
+      color: #838282;
+      border: 2px solid #ebebeb;
+      border-radius: 10px;
+      outline: none;
+      transition: 2s;
+    }
+
+    .box:focus {
+      border: 2px solid #ff0000;
+    }
+
+    .name {
+      display: flex;
+      column-gap: 50px;
+    }
+
+    .multi {
+      display: block;
+      margin: 20px 0;
+      width: 100%;
+      padding: 10px;
+      color: #838282;
+      border: 2px solid #ebebeb;
+      border-radius: 10px;
+      outline: none;
+      transition: 2s;
+    }
+
+    .multi:focus {
+      border: 2px solid #ff0000;
+      
+    }
+
+
+
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 822px;
+    }
+
+    .btm1 {
+      display: block;
+      zoom: 1.5;
+    }
+
+    .btm2 {
+      width: 200px;
+      height: 50px;
+      font-size: 25px;
+      background-color: rgb(156, 11, 11);
+      color: white;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+    }
+    
+
+  </style>
+</head>
+<body>
+  <h2>연습</h2>
+  <form>
+    <input type="text">
+    <input type="text" class="text-input">
+    <button>전송</button>
+    <!-- form 안에서 버튼의 type을 안써주면 기본 submit으로 동작 -->
+    <br><br>
+
+    <!-- input 태그 쓸 때 label 태그도 같이 사용(권장) -->
+    <label for="">Your name</label>
+    <input type="text" id="" class="text-input">
+  </form>
+<br><hr><br>
+
+<!-- ----------------------------------------------------------------------- -->
+
+
+<h1>실전</h1>
+<div class="form-background">
+  <div class="form-container">
+    <form>
+      <h2>Contact Us</h2>
+
+      <label class="title">Your Email
+        <input type="text" placeholder="email@example.com" class="box">
+      </label>
+
+    <div class="name">
+      <label class="title">First Name
+        <input type="text" class="box">
+      </label>
+
+      <label class="title">Last Name
+        <input type="text" class="box">
+      </label>
+    </div>
+
+    <label class="title">Message
+      <textarea class="multi" cols="100" rows="10" style="resize: none;"></textarea>
+    </label>
+    <div class="bottom">
+      <label class="btm1">
+        <input type="checkbox"> Agree
+      </label>
+      <button class="btm2">SEND</button>
+    </div>
+    </form>
+    
+  </div>
+</div>
+</body>
+</html>

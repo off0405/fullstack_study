@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    div {
+      /* 전상태 */
+      width: 100px;
+      height: 100px;
+      background-color: coral;
+    }
+
+    .test {
+      /* 전환 효과를 1초동안 추가한다 */
+      /* transition: 1s; */
+      /* width 값에만 전환 효과 추가 */
+      transition: width 1s;
+      /* witdth 값에만 전화 효과 추가 (배경색은 확 바뀜) */
+
+      /* 지속시간 더 짧게 지정 = 더 빠른 전환 효과 */
+      transition: 0.5s;
+      transition: 0.2s;
+
+      /* 전환 효과 여러 개 설정하기 */
+      transition: width 0.5s,
+      background-color 2s;
+
+      /* 대기 시간 지정 - 단축 속성에서 "두 번째" 시간은 "대기 시간"을 의미 */
+      transition: 1s 0.5s;
+    }
+
+    .test:active {
+      /* 후상태 */
+      width: 300px;
+      background-color: navy;
+      /* height: 200px; */
+    }
+
+
+    div + div {
+      margin-top: 30px;
+    }
+
+    .transition-1 {
+      transition: 
+        width 2s,
+        height 4s linear 3s;
+    }
+
+    .transition-1:hover {
+      width: 300px;
+      height: 300px;
+    }
+/* ----------------------------------------------------- */
+    
+
+    .transition-2 {
+      transition: width 3s ease-in-out 1s;
+    }
+    
+    
+    .transition-2:hover {
+      width: 300px;
+    }
+
+/* https://cubic-bezier.com/#.17,.67,.83,.67 */
+
+
+  .transition-3 {
+    position: relative;
+    left: 0;
+    transition: left 2s;
+  }
+
+
+
+  .transition-3:active {
+    left: 300px;
+  }
+
+
+  </style>
+</head>
+<body>
+  <h1>transition(전환효과) - 단축 속성</h1>
+  <h2>요소의 전before, 후after 상태의 중간 단계를 자연스럽게 만들어주는 효과</h2>
+  <div class="test"></div>
+
+  <div class="transition-1"></div>
+  <div class="transition-2"></div>
+  <div class="transition-3">ㅋ</div>
+</body>
+</html>
+
+<!-- (정리) Quiz
+  Q1: transition-property 속성의 기본값은?
+  A1: all (기본적으로 모든 속성에 적용)
+  
+  Q2: transition 단축 속성의 필수 포함 속성은?
+  A2: transition-duration : 전환 시간 s(초)
+-->
