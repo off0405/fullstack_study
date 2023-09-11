@@ -1,0 +1,169 @@
+ /* 공통스타일 */
+ * {
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  font-family: Dotum, '돋움', sans-serif;
+  background-color: #f5f6f7;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  padding-right: px;
+}
+
+input, select {
+  width: 100%;
+  height: 51px;
+  border: 1px solid #dadada;
+  padding: 10px 14px;
+}
+
+select#month {
+  width: 146px;
+}
+
+input:focus {
+  border: 1px solid #03C75A;
+}
+
+
+
+/* 헤더 영역 */
+header {
+  width: 100%;
+}
+
+header .top {
+  max-width: 768px;
+  height: 124px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 메인영역 */
+#container {
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+#container .section-input {
+  width: 460px;
+  margin: 0 auto;
+  }
+
+
+.input-group-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+
+
+.email {
+  position: absolute;
+  right: 10px;
+  color: #dadada;
+}
+
+.yearmonthdate {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 10px;
+}
+
+.phone-number {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 10px;
+}
+
+
+.submit {
+  width: 150px;
+  box-sizing: border-box;
+  background-color: #03C75A;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: #00853c;
+}
+
+.signup {
+  width: 100%;
+  margin-top: 30px;
+  height: 51px;
+  padding: 10px 14px;
+  border: none;
+  background-color: #03C75A;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.signup:hover {
+  background-color: #00853c;
+}
+
+div.second {
+  margin-top: 50px;
+}
+
+div.third {
+  margin-top: 50px;
+}
+
+
+
+/* 푸터영역 */
+footer {
+  width: 100%;
+  /* padding: 20px; */
+
+}
+
+footer .bottom {
+  max-width: 460px;
+  width: 460px;
+  height: 83px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  text-align: center;
+  
+}
+
+.bt-menu a {
+  margin-top: 20px;
+  border-right: 1px solid black;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.bt-menu a:last-child {
+  border:none;
+}
+
+.bt-menu a:hover {
+  color: #00853c;
+  text-decoration: underline;
+}
+
+.copyright {
+  margin-top: 10px;
+}

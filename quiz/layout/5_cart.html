@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    /* 공통스타일 */
+    * {
+      box-sizing: border-box;
+    }
+
+
+    
+    table {
+      border-collapse: collapse;
+      }
+
+  
+    .item {
+      width: 400px;
+    }
+
+    th {
+    padding: 20px;
+    border-bottom: 2px solid lightsteelblue;
+    }
+
+    td {
+    padding: 10px;
+    border-bottom: 2px solid lightsteelblue;
+    }
+
+    .last-td {
+      text-align: right;
+      padding: 20px;
+    }
+    
+    /* .cart-list > tbody > tr:last-child {
+      text-align: right;
+    } */
+
+    td:nth-child(3) {
+      text-align: center;
+    }
+
+    td:nth-child(4) {
+      text-align: center;
+    }
+
+    td:nth-child(5) {
+      text-align: center;
+    }
+
+    .inner {
+      /* 가운데 정렬 스타일 */
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+      
+    }
+
+    .cart-background {
+      width: 100%;
+      background-color: lightsteelblue;
+      padding: 30px;
+    }
+
+    .cart-list {
+      background-color: #fff;
+      border-radius: 10px;
+    }
+
+
+    .bottom { 
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      }
+
+    button { 
+      display: block;
+      width: 150px;
+      height: 50px;
+      background-color: rgb(170, 71, 71);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: rgb(114, 39, 39);
+    }
+
+    button:active {
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="cart-background">
+    <!-- 가운데 정렬을 위한 div -->
+    <div class="inner">
+      <h2>너의 장바구니</h2>
+      <table class="cart-list">
+        <!-- 4행 5열 -->
+        <tr>
+          <th></th>
+          <th class="item">ITEM</th>
+          <th>AMOUNT</th>
+          <th>PRICE</th>
+          <th>TOTAL</th>
+        </tr>
+
+        <tr>
+          <td><img src="../다운로드.jpg" alt="신발" style="width: 80px;"></td>
+          <td class="item">신발</td>
+          <td>1</td>
+          <td>100,000</td>
+          <td>100,000</td>
+        </tr>
+
+        <tr>
+          <td><img src="../다운로드.jpg" alt="신발" style="width: 80px;"></td>
+          <td class="item">신발</td>
+          <td>2</td>
+          <td>59,000</td>
+          <td>118,000</td>
+        </tr>
+
+        <tr>
+          <td colspan="5" class="last-td">총가격 : 218,000</td>
+        </tr>
+      </table>
+
+      <div class="bottom">
+        <a href="https://naver.com">계속 쇼핑하기</a>
+        <button type="buy">구매하기</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
+  <link rel="stylesheet" href="./css.css">
+
+</head>
+<body>
+  <!-- 헤더영역 -->
+  <header>
+    <!-- 가운데 정렬을 위한 div -->
+    <div class="top">
+      <h1 class="logo">
+        <a href="#">
+          <img src="https://ssl.pstatic.net/static/nid/join/m_logo_naver.png" alt="네이버 로고">
+        </a>
+      </h1>
+    </div>
+  </header>
+  
+  <!-- 메인영역 -->
+  <main id="container">
+    <!-- 가운데 정렬을 위한 div -->
+    <div class="first">
+      <div class="section-input">
+        <label for="id">아이디</label>
+        <div class="input-group-row">
+          <input type="text" id="id">
+          <span class="email">@naver.com</span>
+        </div>
+      </div>
+
+      <div class="section-input">
+        <label for="pw">비밀번호</label>
+        <div class="input-group-row">
+          <input type="password" id="pw">
+        </div>
+      </div>
+
+      <div class="section-input">
+        <label for="pw2">비밀번호 재확인</label>
+        <div class="input-group-row">
+          <input type="password" id="pw2">
+        </div>
+      </div>
+    </div>
+
+    <div class="second">
+      <div class="section-input">
+        <label for="name">이름</label>
+        <div class="input-group-row">
+          <input type="text" id="name">
+        </div>
+      </div>
+      
+      <div class="section-input">
+        <div class="year">
+          <label for="pw">생년월일</label>
+          <div class="yearmonthdate">
+            <div class="input-group-row">
+              <input type="text" id="id" placeholder="년(4자)">
+              </div>
+            
+            <div>
+              <select id="month" class="input-group-row">
+                <option value="월" >월</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+          </div>
+          
+          <div class="input-group-row">
+            <input type="text" id="id" placeholder="일">
+            </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="section-input">
+        <label for="sex">성별</label>
+        <div>
+          <select id="sex" class="input-group-row">
+            <option value="성별">성별</option>
+            <option value="남">남</option>
+            <option value="여">여</option>
+          </select>
+        </div>
+        <div class="section-input">
+          <label for="mail">본인 확인 이메일(선택)</label>
+          <div class="input-group-row">
+            <input type="text" id="id" placeholder="선택입력">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <!-- 본인확인 이메일  -->
+  <div class="third">
+
+    <!-- 휴대전화 -->
+    <div class="section-input">
+      <label for="phone">휴대전화</label>
+        <select id="phone" class="input-group-row">
+          <option value="82">대한민국 +82</option>
+          <option value="070">070</option>
+          <option value="001">001</option>
+        </select>
+
+        <div class="phone-number">
+            <div class="section-input">
+              <input type="tel" id="numberput" placeholder="전화번호입력">
+            </div>
+            <button type="submit" class="submit">인증번호 받기</button>
+          </div>
+
+      <div class="section-input">
+        <div class="input-group-row">
+          <input type="password" id="인증번호" placeholder="인증번호 입력하세요" disabled>
+        </div>
+      </div>
+      <button type="singup" class="signup">가입하기</button>
+    </div>
+  </div>
+</main>
+
+  <!-- 푸터영역 -->
+  <footer>
+    <!-- 가운데 정렬을 위한 div -->
+    <div class="bottom">
+      <div class="bt-menu">
+        <a href="#">이용약관</a>
+        <a href="#">개인정보처리방침</a>
+        <a href="#">책임의 한계와 법적고지</a>
+        <a href="#">회원정보</a>
+        <a href="#">고객센터</a>
+      </div>
+      <div class="copyright">
+        ©️ Copyright NAVER Corp. All Rights Reserved.
+      </div>
+    </div>
+
+  </footer>
+</body>
+</html>
