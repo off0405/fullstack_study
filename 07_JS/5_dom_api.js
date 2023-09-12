@@ -14,6 +14,8 @@ console.log(boxE1);
 // 실제 이벤트가 발생하면 연결된 함수(Handler)를 실행한다.
 boxE1.addEventListener('click', function () {
   console.log('Click!!!!!');
+
+  
   // classList 속성: 요소의 HTML class 속성에 대한 제어 명령이 포함.
   boxE1.classList.add('active'); //요소에 active라는 클래스를 추가
   let hasActive = boxE1.classList.contains('active'); // 요소에 active라는 클래스 값이 있는지 확인

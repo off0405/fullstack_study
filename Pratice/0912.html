@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+
+#slideShow {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+#slides {
+  display: flex;
+  position: relative;
+}
+
+#slides > button {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  border: none;
+  padding: 20px;
+  background-color: transparent;
+  color: #000;
+  font-weight: 800;
+  font-size: 24px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+  </style>
+</head>
+<body>
+  <section id="slideShow">
+    <div id="slides">
+      <img src="../08_layout/clone_coding/naver/web_design/images/photo-1.jpg" alt="slide1">
+      <img src="../08_layout/clone_coding/naver/web_design/images/photo-2.jpg" alt="slide3">
+      <img src="../08_layout/clone_coding/naver/web_design/images/photo-3.jpg" alt="slide2">
+      <button type="button" id="prev">&lang;</button>
+      <button type="button" id="next">&rang;</button>
+    </div>
+  </section>
+
+
+  <script src="./0912main.js"></script>
+</body>
+</html>
