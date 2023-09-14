@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+  <style>
+    .background {
+      background-color: #333333;
+      width: 100%;
+      height: 800px;
+      padding: 30px;
+    }
+
+    .container {
+      background-color: #fff;
+      width: 700px;
+      height: 600px;
+      margin: 0 auto;
+      padding: 30px 30px;
+    }
+
+    .title {
+      
+          }
+
+    .box {
+      display: block;
+      width: 100%;
+      padding: 5px;
+      margin-top: 10px;
+      border: 2px solid #ececec;
+    }
+
+    .name {
+      display: flex;
+      align-items: center;
+      /* justify-content: center; */
+      gap: 30px;
+      width: 100%;
+      margin-top: 10px;
+      }
+
+      .name-box {
+        display: block;
+        width: 100%;
+        
+      }
+
+  </style>
+
+
+</head>
+<body>
+  <div class="background">
+    <div class="container">
+      <div class="email"></div>
+        <h4>Contact Us</h4>
+        <label for="text" class="title">Your Email<input type="text" placeholder="email@example.com" class="box">
+        </label>
+        
+      
+      <div class="name">
+        <label for="first">First name
+            <input type="text" class="name-box">
+          </label>
+
+          <label for="last" >Last Name
+            <input type="text" class="name-box">
+          </label>
+      </div>
+
+        <textarea name="message" id="message"></textarea>
+      
+      <div class="bottom">
+        <input type="checkbox"> Agree
+        <button>SEND</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

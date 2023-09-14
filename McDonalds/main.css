@@ -1,0 +1,159 @@
+body {
+  box-sizing: border-box;
+  display: block;
+  height: 3000px;
+  background-color: orange;
+  position: relative;
+  opacity: 1;
+
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  display: block;
+}
+
+button {
+  display: inline-block;
+}
+
+header {
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+  /* border-bottom: 1px solid #ffbc0d;; */
+  position: fixed;
+}
+
+header:hover {
+  border-bottom: 1px solid rgb(220, 220, 220)
+}
+
+.center {
+  width: 1170px;
+  height: 140px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.logo {
+  width: 106px;
+  display: inline-block;
+  height: 93px;
+  position: absolute;
+  line-height: 140px;
+}
+
+.nav {
+  width: 100%;
+  height: inherit;
+  margin-left: 191px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.menu {
+  display: flex;
+}
+
+#menu1:hover {
+  border-bottom: 2px solid #ffbc0d;
+  background: #fff;
+}
+#menu2:hover {
+  border-bottom: 2px solid #ffbc0d;
+  background: #fff;
+}
+#menu3:hover {
+  border-bottom: 2px solid #ffbc0d;
+  background: #fff;
+}
+#menu4:hover {
+  border-bottom: 2px solid #ffbc0d;
+  background: #fff;
+}
+
+
+
+.menu > li:nth-child(3) > #menu3 {
+  width: 140px
+}
+
+
+.depth1 {
+line-height: 140px;
+box-sizing: border-box;
+display: inline-block;
+height: 140px;
+margin-right: 85px;
+padding: 0 10px;
+font-size: 20px;
+font-weight: 800;
+color: #292929;
+text-align: center;
+}
+
+.depth2 {
+  
+  
+  background-color: rgb(196, 196, 196);
+}
+
+
+
+
+
+
+
+
+.ask {
+display: block;
+width: 80px;
+height: 36px;
+border: none;
+border-radius: 48px;
+font-weight: 600;
+color: #fff;
+background-color: #db0007;;
+}
+
+
+.utill {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+
+.recruit {
+  display: block;
+  width: 80px;
+  height: 36px;
+  border: none;
+  border-radius: 48px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #d87e00;
+}
+
+.lang {
+  width: 80px;
+  height: 36px;
+  border: none;
+  border-radius: 48px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #264a36;
+}
+
+.search {
+  background-color: transparent;
+  border: none;
+  margin-left: 26px;
+}
+
