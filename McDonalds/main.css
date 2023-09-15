@@ -1,11 +1,11 @@
 body {
   box-sizing: border-box;
+  background-color: orange;
 }
 
 a {
   text-decoration: none;
 }
-
 
 
 button {
@@ -20,22 +20,10 @@ button {
   position: relative;
 }
 
-.menu-open {
-  width: 100%;
-  height: 383px;
-  border-top: 1px solid #d9d9d9;
-  border-bottom: 1px solid #ffbc0d;
+header {
+  background-color: #fff;
 }
 
-
-.inner2 {
-  width: 1170px;
-  height: 383px;
-  margin: 0 auto;
-  display: flex;
-  position: relative;
-  left: 181px;
-  }
 
 
 .logo {
@@ -53,6 +41,34 @@ button {
   overflow: hidden;
   transition: height 0.4s;
 }
+
+
+.menu-open {
+  width: 100%;
+  position: absolute;
+  top: 140px;
+  
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #ffbc0d;
+}
+.inner2 {
+  width: 100%;
+  height: 383px;
+  display: flex;
+  position: relative;
+  left: 80px;
+  background-color: #fff;
+}
+
+.full ul.menu + .menu-open {
+  display: none;
+}
+
+.full ul.menu:hover + .menu-open {
+  display: block;
+}
+
+
 
 .menu li {
   box-sizing: border-box;
@@ -76,6 +92,8 @@ button {
   color: #292929;
   font-weight: 900;
 }
+
+
 
 .inner2 > ul.sub-menu3 {
   margin-left: 30px;
