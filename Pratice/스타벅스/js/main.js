@@ -140,6 +140,9 @@ promotionToggleBtn.addEventListener('click', function () {
   }
 });
 
+
+
+
 // 유튜브 섹션 위에 부유 요소 애니메이션 처리
 // gsap.to(요소, 지속시간, 옵션: {})
 // 옵션 참고: https://greensock.com/docs/v3/GSAP/gsap.to()

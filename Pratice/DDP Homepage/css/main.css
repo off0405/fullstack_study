@@ -1,0 +1,409 @@
+body {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #333;
+  /* 위 속성들은 모두 상속되기에 전체 스타일을 한번에 제어 */
+  overflow-x: hidden;
+  box
+}
+
+img {
+  display: block;
+}
+
+
+a { 
+  text-decoration: none;
+}
+
+.header-background {
+  width: 100%;
+  height: 420px;
+  background-image: url("../images/main/background_header.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0.1px;
+}
+
+.inner {
+  max-width: 1440px; /* 반응형 작업을 위해 */
+  margin: 0 auto;
+  position: relative; /* inner div 기준으로 내부 요소를 배치하기 위해 */
+}
+
+.header-background .inner .nav {
+  display: flex;
+  align-items: center;
+  width: 1440px;
+}
+
+
+.logo {
+  display: inline-block;
+  margin-top: 40px;
+}
+
+.main-menu .main-menu2 {
+  display: flex;
+  position: absolute;
+  right: 0px;
+}
+
+.main-menu .main-menu2 li.item a.item_name {
+  color: #fff;
+  padding: 0 50px;
+  font-weight: 500;
+}
+
+.main-menu .main-menu2 li.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.item-contents {
+  display: block;
+  background-color: #fff;
+  padding: 30px 30px;
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 30px;
+  text-align: center;
+  display: none;
+  }
+
+.main-menu .main-menu2 li.item:hover .item-contents {
+  display: block;
+}
+
+
+.item-contents .contents__menu .inner li a {
+  color: #333;
+}
+
+.banner {
+  width: 1270px;
+  height: 390px;
+  background-color: #333;
+  position: absolute;
+  top: -150px;
+  z-index: 1;
+  box-shadow: 4px 4px 14px 1px rgba(0, 0, 0, 0.5);
+
+}
+
+.banner-back {
+  width: 1270px;
+  height: 390px;
+  background-color: #E4864D;
+  position: absolute;
+  left: 120px;
+  top: -120px;
+}
+
+.main-banner .banner img {
+  display: block;
+  width: 1270px;
+  height: 390px;
+}
+
+
+/* 스와이퍼 페이지네이션 */
+.main-banner .swiper-pagination {
+  position: absolute;
+  top: 600px;
+  z-index: 1; /* 헤더의 z-index가 9이기 때문에 1로 덮어씀 */
+  background-color: #ff0;
+}
+.main-banner .swiper-pagination .swiper-pagination-bullet {
+  /* 기존 배경색은 투명하게 숨기고, 배경 이미지를 사용 */
+  background-color: transparent;
+  background-image: url("../images/main/main-banner_slide_pager.png");
+  width: 13px;
+  height: 12px;
+}
+.main-banner .swiper-pagination .swiper-pagination-bullet-active {
+  background-image: url("../images/main/main-banner_pager_on.png");
+}
+
+/* 스와이퍼 버튼 */
+.main-banner .swiper-button-prev,
+.main-banner .swiper-button-next {
+  width: 42px;
+  height: 42px;
+  text-align: center;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 429px;
+  z-index: 1;
+  color: #fff;
+  transition: 0.4s;
+}
+
+.main-banner .swiper-button-prev .material-icons,
+.main-banner .swiper-button-next .material-icons {
+  line-height: 42px;
+}
+
+
+.main-banner .swiper-button-prev {
+  /* 가운데로 몰아넣고 마진으로 위치 조정 */
+  left: 1543px;
+}
+.main-banner .swiper-button-next {
+  /* 가운데로 몰아넣고 마진으로 위치 조정 */
+  left: 1600px;
+}
+.main-banner .swiper-button-prev:hover,
+.main-banner .swiper-button-next:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+.main-banner .swiper-button-prev::after,
+.main-banner .swiper-button-next::after {
+  display: none;
+}
+
+
+
+
+/* section content 1 */
+section.content1 {
+  position: relative;
+  top: 300px;
+}
+
+.left {
+  margin-right: 61px;
+}
+
+
+
+h4 {
+  font-size: 86px;
+  font-weight: 900;
+}
+
+.left p {
+  font-size: 25px;
+  line-height: 45px;
+}
+
+.left p span.bold {
+  color: #E73A3A;
+  font-weight: 700;
+}
+
+.left p span.h {
+  background-color: rgba(231, 58, 58, 0.2)
+}
+
+
+.more {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  margin-left: 0;
+}
+.more .material-symbols-outlined.plus {
+  font-size: 60px;
+  color: #E73A3A;
+}
+.more .add {
+  font-size: 20px;
+  color: #E73A3A;
+}
+
+
+/* 포스터들 */
+
+.right {
+  margin-top: 40px;
+
+  width: 930px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px;
+}
+
+.content_item {
+  width: 283px;
+}
+
+
+.item_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 11px;
+}
+
+.event {
+  display: inline-block;
+  background-color: #E73A3A;
+  width: 60px;
+  height: 31px;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 23px;
+  text-align: center;
+  line-height: 31px;
+}
+
+.poster {
+  margin-bottom: 11px;
+}
+
+.content_item h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.content_item p {
+  font-size: 17px;
+  font-weight: 700;
+  color: #a6a6a6;
+}
+
+.content1 .inner {
+  display: flex;
+  align-items: start;
+  }
+
+.background_logo {
+  position: absolute;
+  top: 680px;
+}
+
+
+/* notice & news */
+
+.content2 .inner {
+  top: 400px;
+}
+
+.inner .title {
+  margin-bottom: 40px;
+}
+
+.title_group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.title_group p {
+  font-size: 25px;
+}
+
+.btn_more {
+  display: flex;
+  align-items: center;
+  column-gap: 40px;
+  color: #333;
+}
+
+.btn_more a p.whole  {
+  color: #000;
+  font-size: 20px;
+}
+
+
+.news {
+  display: flex;
+  position: absolute;
+  left: -60px;
+  overflow: hidden;
+}
+
+.news .news1 {
+  width: 480px;
+  height: 470px;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  border-right: 1px solid #000;
+}
+
+.news-content {
+  width: 360px;
+  margin: 0 auto;
+}
+
+.news .news1 p {
+  color: #E73A3A;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.news .news1 h3 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.news .news1 span {
+  font-size: 18px;
+  line-height: 32px;
+}
+
+.news_img {
+  width: 360px;
+  height: 321px;
+}
+
+
+
+/*  운영시간   */
+
+.time .inner {
+  top: 1000px;
+  background-color: orange;
+}
+
+.content3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title_time {
+  display: flex;
+  align-items: center;
+}
+
+.title_time h1 {
+  font-size: 35px;
+  font-weight: 700;
+  margin-right: 17px;
+}
+
+.title_time img {
+margin-right: 17px;
+}
+
+.title_time p {
+  font-size: 18px;
+  color: #a6a6a6;
+}
+
+.time_time {
+  display: flex;
+}
+
+.clock {
+  width: 54px;
+  height: 54px;
+  background-color: #D9D9D9;
+  border-radius: 10px;
+}
+
+.clock .material-symbols-outlined {
+  font-size: 25px;
+}
