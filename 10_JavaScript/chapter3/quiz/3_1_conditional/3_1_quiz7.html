@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,25 +9,39 @@
   <script>
     // 문제7
     // "switch"문을 사용해 작성된 아래 코드를 if..else문을 사용한 코드로 변환해 보세요.
-    switch (browser) {
-      case 'Edge':
-        alert('Edge를 사용하고 계시네요!');
-        break;
-      case 'Chrome':
-      case 'Firefox':
-      case 'Safari':
-      case 'Opera':
-        alert('저희 서비스가 지원하는 브라우저를 사용하고 계시네요.');
-        break;
-      default:
-        alert('현재 페이지가 괜찮아 보이길 바랍니다!');
-    }
+    // switch (browser) {
+    //   case 'Edge':
+    //     alert('Edge를 사용하고 계시네요!');
+    //     break;
+    //   case 'Chrome':
+    //   case 'Firefox':
+    //   case 'Safari':
+    //   case 'Opera':
+    //     alert('저희 서비스가 지원하는 브라우저를 사용하고 계시네요.');
+    //     break;
+    //   default:
+    //     alert('현재 페이지가 괜찮아 보이길 바랍니다!');
+    // }
 
+    // 브라우저가 엣지이면 alert창 (Edge를 사용하고 계시네요!) 
+    // 크롬 파이어폭스 사파리 오페라이면 alert창 (저희 서비스가 지원하는 브라우저를 사용하고 계시네요!) 
+    // 그 외 alert('현재 페이지가 괜찮아 보이길 바랍니다!');
     // 풀이7
-    
+
+    const yourBrowser = prompt('사용하는 브라우저를 입력해주세요');
+
+    if (yourBrowser === 'Chrome' || yourBrowser === 'Firefox' || yourBrowser === 'Safari' || yourBrowser === 'Opera') {
+      alert('저희 서비스가 지원하는 브라우저를 사용하고 계시네요.');
+    } else if (yourBrowser === 'Edge') {
+      alert('Edge를 사용하고 계시네요!');
+    } else {
+      alert('현재 페이지가 괜찮아 보이길 바랍니다!');
+    }
   </script>
 </head>
+
 <body>
-  
+
 </body>
+
 </html>

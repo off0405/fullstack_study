@@ -14,17 +14,32 @@
     // (점수가 0미만 100초과이면 "에러입니다." 라는 alert창을 띄우세요.)
 
     // 풀이3
-    const grade = prompt('학년을 입력하세요', '0')
-    const test = prompt('점수 입력하세요', '0')
-    if (grade < 4 && test >=60 grade >= 5 && test >=70) {
-      document.write('합격')
+    const grade = prompt('학년을 입력하세요', '0');
+    const test = prompt('점수 입력하세요', '0');
+
+    // if (grade < 4 && test >= 60) {
+    //   document.write('합격');
+    // } else if ((4 <= grade && grade <= 6) && test >= 70){
+    //   document.write('합격');
+    // } else {
+    //   document.write('불합격');
+    // }
+
+    // if (test < 0 || test >100) {
+    //   alert('에러입니다.');
+    // }
+
+
+    if (test < 0 || test > 100) {
+      alert('에러입니다');
     } else {
-      document.write('불합격')
-      
+      if (grade >= 1 && grade <= 3 && test >= 60 ||
+          grade >= 4 && grade <= 6 && test >= 70) {
+        document.write('합격');
+      } else {
+        document.write('불합격');
+      }
     }
-
-123 <= grade <=6
-
 
   </script>
 </head>

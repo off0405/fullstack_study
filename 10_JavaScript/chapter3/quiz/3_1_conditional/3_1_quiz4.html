@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,12 +18,44 @@
 
     const height = prompt('신장을 입력하세요.', '0');
     let msg = '놀이기구 이용 가능';
-    
+
+
     // 풀이4-1
+    // if (height >= 150) {
+    //   document.write(msg);
+
+    //   if (height < 150) {
+    //     if (result) {
+    //       document.write('좋은 시간 보내렴~');
+    //     } else {
+    //       document.write('어른 모시고 다시 오렴~');
+    //     }
+    //   }
+    // }
+
+    if (height < 150) {
+      const withMom = confirm('부모님과 함께 왔니');
+      if (withMom) {
+        msg = '좋은 시간';
+      } else {
+        msg = '어른 모시고';
+      }
+    } 
+
+    document.write(msg);
     
+    
+    
+// 다른방법
+    if (height < 150) {
+      msg = confirm('부모님과 함께 왔니?') ? '좋은 시간' : '어른 모시고';
+    }
+
   </script>
 </head>
+
 <body>
-  
+
 </body>
+
 </html>
