@@ -8,7 +8,7 @@
   <script>
     // 과제
     // 과자 자판기 만들기
-    // 자판기에 넣을 돈을 먼저 입력받은 후 정상적으로 돈이 입력되었으면 뽑을 과자 종류를 입력받는다.
+    // 자판기에 넣을 돈을 먼저 입력받은 후, 정상적으로 돈이 입력되었으면 뽑을 과자 종류를 입력받는다.
     // 내가 뽑은 과자 종류와 거스름돈을 브라우저에 출력해보세요.
     
     // 입력받을 과자 종류는 다음과 같다.
@@ -22,8 +22,33 @@
     const money = Number(prompt('돈을 넣어주세요.', '0'));
     let change = 0; // 거스름돈
 
-    // 풀이
+    if (money < 0 || money < 1300) {
+      alert('error!');
+      location.reload();
+    } 
+    
+    const snack = prompt('과자를 선택해주세요');
 
+    switch (snack) {
+      case '허니버터':
+        change = money - 1300
+        break;
+      case '칸쵸':
+        change = money - 1500
+        break;
+      case '프링글스':
+        change = money - 3000
+        break;
+
+      default:
+        alert('error!')
+        location.reload();
+    }
+    document.write(change);
+
+
+    // 풀이
+    
   </script>
 </head>
 <body>
