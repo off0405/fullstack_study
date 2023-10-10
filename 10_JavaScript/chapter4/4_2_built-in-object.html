@@ -101,7 +101,7 @@
     document.write(Math.floor(randomNum * 10), '<br>');
 
     // 1 <= Math.random() * 10 + 1 < 11 (1이상 11미만의 랜덤한 정수값) 1~10
-    document.write(Math.floor(randomNum * 10), '<br>');
+    document.write(Math.floor(randomNum * 10) + 1, '<br>');
 
     // 공식화: Math.floor(Math.random() * (최대값 - 최소값 + 1)) + 최소값;
     
@@ -207,21 +207,90 @@
     document.write(arr[i], '<br>');
     }
 
-    document.write('<h2>배열값 가져오기 - 3 </h2>')
+    document.write('<h3>배열값 가져오기-3(권장 안함)</h3>');  
     for (const i in arr) { // key 값을 가져옴
       document.write(arr[i], '<br>');
     }
 
-    document.write('<h2>배열값 가져오기 - 4 </h2>')
-    for (const el of arr) { // value 값을 가져옴 , ES6차 문법
+    document.write('<h3>배열값 가져오기-4</h3>');
+    for (const el of arr) { // value 값을 가져옴, ES6차 문법
       document.write(el, '<br>');
     }
 
-    document.write('<h2>배열값 가져오기 - 5 </h2>')
+    document.write('<h3>배열값 가져오기-5</h3>');
     arr.forEach(function (element, index) {
-      document.write(index,':', element, '<br>');
+      document.write(index, ': ', element, '<br>');
     });
 
+
+    // 배열 객체의 메소드(1)========================================
+    const arr1 = ['사당', '교대', '방배', '강남'];
+    const arr2 = ['신사', '압구정', '옥수'];
+    
+    let resultArr = arr1.join('*'); // 배열의 값을 지정한 문자로 연결하여 "하나의 문자열"로 반환
+    console.log(resultArr);
+    
+    resultArr = arr1.concat(arr2); // concatenate(연쇄시키다) // 2개의 배열을 하나의 배열로 결합하여 "새로운 배열"로 반환
+    console.log(resultArr);  
+    
+    resultArr = arr1.slice(0, 3); // 지정된 시작과 끝위치(포함되지 않음) 구간만큼 잘라내서 "새로운 배열"로 반환
+    console.log(resultArr);
+
+    arr1.sort(); // 배열의 값을 오름차순(알파벳 순)으로 정렬 ("원본 배열"이 변경됨)
+    console.log(arr1);
+
+    arr2.reverse(); // 배열의 순서를 반대로 바꿈 ("원본 배열"이 변경됨)
+    console.log(arr2);
+
+    // ★중요★ 배열에서 숫자 데이터를 정렬하려면 비교 함수가 필요
+    // array.sort(비교함수);
+    // 비교함수 : function(a, b) { return a - b; }
+    console.log('배열에서 숫자 데이터 정렬');
+    const score = [40, 100, 1, 5, 25, 10];
+    console.log(score.sort()); // '25'는 '100'보다 크다. '2'가 '1'보다 크기 때문에.
+    console.log(score.sort(function(a, b) { return a - b; })); // 숫자 데이터 오름차순
+    // 음수가 나오면 a, b순으로
+    // 양수가 나오면 b, a순으로
+
+    // Quiz. 숫자 데이터 내림차순
+    console.log(score.sort(function(a, b) { return - a + b; }));
+    
+
+
+
+    // 배열 객체의 메소드 (2)========================================
+    const greenArr = ['교대', '방배', '강남'];
+    const yellowArr = ['미금', '정자', '수서'];
+    
+    greenArr.splice(2, 3, '서초', '역삼', '인천'); // 배열 요소를 추가하거나 제거 ("원본 배열"이 변경됨)
+    console.log(greenArr);
+    
+    const popData = yellowArr.pop(); // 배열의 마지막 요소를 제거, 제거된 요소를 반환("원본 배열"이 변경됨)
+    console.log(yellowArr);
+    console.log(popData);
+
+    const shiftData = yellowArr.shift(); // 배열의 첫번째 요소를 제거, 제거된 요소 반환("원본 배열"이 변경됨)
+    console.log(yellowArr);
+    console.log(shiftData);
+    
+    yellowArr.push('합정'); // 배열의 끝에 새 요소를 추가 ("원본 배열"이 변경됨)
+    console.log(yellowArr);
+    
+    yellowArr.unshift('시작'); // 배열의 시작부분에 새 요소를 추가 ("원본 배열"이 변경됨)
+    console.log(yellowArr);
+    
+    
+    // 배열 객체의 메소드 (3) - 검색 ========================================
+    const fruits = ['Banana', 'Orange', 'Apple', 'Mango', 'Apple'];
+
+    // indexof(); 지정된 값의 첫번째 "인덱스를" 반환, 찾을 수 없는 경우 -1을 반환
+    let index = fruits.indexOf('Apple');
+    console.log(index);
+    index = fruits.indexOf('Apple', 3); // 검색 시작 위치 지정
+    console.log(index);
+
+    // includes(); 지정된 값이 포함된 경우 true, 포함되지 않은 경우 false (ES7)
+    console.log(fruits.includes('Banana', 3)); // 검색 시작 위치 지정
 
 
 
