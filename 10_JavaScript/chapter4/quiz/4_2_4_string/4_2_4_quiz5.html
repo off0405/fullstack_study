@@ -24,15 +24,20 @@
 
     // 첨부된 파일에 변화가 감지되었을때 'change' 이벤트 발생
     fileInput.addEventListener('change', function () {
-      if (!fileExt.includes(imgFileExt)) {
-        alert('error!')
-      }
+      // debugger;
       console.log(fileInput); // input DOM 객체
       console.log(fileInput.files); // FileList 객체
-    });
+      console.log(fileInput.files[0]); // File 객체
+      console.log(fileInput.files[0].name); // File name
 
-    // 풀이5
-    
+      const fileName = fileInput.files[0].name;
+      const fileExt = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
+      console.log(fileExt);
+      
+      if (!imgFileExt.includes(fileExt)) {
+        alert('이미지 파일이 아닙니다!');
+      }
+    });
   </script>
 </body>
 </html>

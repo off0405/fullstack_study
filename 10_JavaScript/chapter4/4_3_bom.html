@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+
+    // window.open('https://www.google.com');
+    
+    // 팝업창 열고 닫기 예제
+    // window.open('winpopup.html', '팝업', 'width=300, height=400, left=300, top=50');
+    
+    let addNum = 0;
+    let subNum = 1000;
+
+    const counter = setInterval(function () {
+      addNum++;
+      console.log('addNum: ', addNum);
+    }, 2000);
+
+    const timer = setInterval(function () {
+      subNum--;
+      console.log('subNum: ', subNum);
+    }, 2000);
+
+    // 2초 간격으로 함수를 실행시켜라
+    
+    const myTimeout = setTimeout(function () {
+      document.querySelector('.happy').innerHTML = 'Happy New Day';
+    }, 3000);
+    
+    
+    document.write('<h2>screen 관련 속성</h2>');
+    document.write(screen.width, '<br>');
+    document.write(screen.height, '<br>');
+    document.write(screen.availWidth, '<br>'); // 작업 표시줄을 제외한 값
+    document.write(screen.availHeight, '<br>'); // 작업 표시줄을 제외한 값
+    
+    
+    document.write('<h2>location 관련 속성</h2>');
+    document.write(`origin: ${location.origin}'<br>'`);
+    document.write(`protocol: ${location.protocol}'<br>'`);
+    document.write(`host: ${location.host}'<br>'`);
+    document.write(`hostname: ${location.hostname}'<br>'`);
+    document.write(`port: ${location.port}'<br>'`);
+    document.write(`href: ${location.href}'<br>'`);
+    document.write(`search: ${location.search}`);
+
+    //location.reload(); 새로고침
+    
+    // 리다이렉트 하기
+    // : 다른 주소나 페이지로 보내기
+    function href() {
+      location.href = 'https://www.naver.com' 
+    }
+    // 현재 URL을 설정
+
+
+    function assign() {
+      location.assign('https://www.naver.com');
+    }
+    // 새 문서가 로드. 히스토리가 쌓임
+    
+    function replace() {
+      location.replace('https://www.naver.com');
+    }
+    // 현재 문서를 새 문서로 교체
+    // 히스토리에서 현재 URL 제거, 원래 문서로 back이 불가
+    
+    
+    document.write('<h2>history 관련 속성</h2>');
+    document.write('length: ' + history.length); // 방문 기록에 저장된 페이지 갯수
+
+    
+    // 이전, 다음 페이지로 이동
+    // 브라우저 뒤로 가기, 앞으로 가기와 동일
+    function back() {
+      history.back();
+    }
+    function forward() {
+      history.forward();
+    }
+    
+    
+    document.write('<h2>navigator 관련 속성</h2>');
+    document.write('userAgent: ' + navigator.userAgent, '<br>');
+    
+    const info = navigator.userAgent.toLowerCase();
+    let osImg = null;
+    if (info.includes('windows')) {
+      osImg = 'windows.png';
+    } else if (info.includes('macintosh')){
+      osImg = 'macintosh.png';
+    } else if (info.includes('iphone')){
+      osImg = 'iphone.png';
+    } else if (info.includes('android')){
+      osImg = 'android.png';
+    }
+    
+    document.write(`<img src="images/${osImg}">`);
+    
+    
+    
+    
+  </script>
+</head>
+<body>
+  <h1>일정 시간 간격으로 값 증감시키기</h1>
+  <p>콘솔을 열어 확인하세요.</p>
+  <button type="button" onclick="clearInterval(counter)">증가 정지</button>
+  <button type="button" onclick="clearInterval(timer)">감소 정지</button>
+
+  <h1>setTimeout() 동작을 취소하려면 3초 안에 버튼을 클릭하세요</h1>
+  <h2 class="happy"></h2>
+  <button type="button" onclick="clearTimeout(myTimeout)">멈추기</button>
+
+  <h1>리다이렉트 하기</h1>
+  <button type="button" onclick="href()">Naver로 이동<br> (href) 속성</button>
+  <button type="button" onclick="assign()">Naver로 이동<br> (assign) 메소드</button>
+  <button type="button" onclick="replace()">Naver로 이동<br> (replace) 메소드</button>
+  
+  <h1>이전, 다음 페이지로 이동</h1>
+  <button type="button" onclick="back()">뒤로 가기</button>
+  <button type="button" onclick="forward()">앞으로 가기</button>
+  
+
+  <h1>HTML Geolocation API</h1>
+  <button type="button" onclick="getLocation">좌표 얻기</button>
+  <p id="demo"></p>
+
+  <script>
+    // 위치 정보(좌표) 가져오기
+    const x = document.querySelector('#demo');
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        x.innerHTML = '이 브라우저에서는 위치 정보가 지원되지 않습니다';
+      }
+    }
+
+    function showPosition(position) {
+      x.innerHTML = '위도: ' + position.coords.latitude + '<br>경도: ' + position.coords.longitude
+    }
+  </script>
+</body>
+</html>
