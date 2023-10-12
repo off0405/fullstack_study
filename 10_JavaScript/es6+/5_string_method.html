@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+
+    // 새로운 문자열 메소드
+    
+    // 1. startsWith()
+    // 전달한 값으로 문자열이 시작하는지 확인
+    const code = 'abcdefg';
+    
+    console.log(code.startsWith('a')); //true
+    console.log(code.startsWith('ab')); //false
+    console.log(code.startsWith('A')); //false (대소문자 구분)
+    console.log(code.startsWith('de', 3)); //true (검사 시작점을 지정)
+    
+    
+    // 2. endsWith()
+    // 전달한 값으로 문자열이 끝나는지 확인
+    console.log(code.endsWith('fg')); //true
+    console.log(code.endsWith('FG')); //false (대소문자 구분)
+    console.log(code.endsWith('ef', 6)); //첫 6개 문자인 abcdef만을 고려, ef로 끝나므로 true
+    // 문자열의 얼마만큼만을 확인할지 길이 지정
+    
+    
+    // 3. includes()
+    // 전달한 값이 문자열에 포함되어 있는지 확인
+    console.log(code.includes('cde')); // true
+    console.log(code.includes('abb')); // false
+    console.log(code.includes('AB')); //false (대소문자 구분)
+    
+    
+    // 4. repeat()
+    // 글쎄... 문자열을 지정한 횟수만큼 반복
+    const hello = 'Hi';
+    console.log(hello.repeat(50));
+    
+    
+    // (참고) ES6차 이후에 추가된 메소드: matchAll(), replaceAll(), trimStart(), trimEnd(), padStart(), padEnd()
+
+
+    // Quiz 
+    // 5.1 다음 코드의 올바른 출력은? 2
+    const code1 = 'ABCDEFGHI';
+    code1.startsWith('EFG', 4);
+
+    // 1) true
+    // 2) false
+
+
+    
+    // 5.2 다음 코드의 올바른 출력은? 2
+    const code2 = 'ABCDEF';
+    code2.endsWith('def');
+
+    // 1) true
+    // 2) false
+
+
+
+    // 5.3 원하는 값을 출력하도록 코드의 구현을 완성하자. 
+    let str = 'Na';
+    let bat = 'BatMan';
+
+    let batman = `${str.repeat(8)} ${bat}`;
+    console.log(batman);
+    // 예상 결과: NaNaNaNaNaNaNaNa BatMan
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
