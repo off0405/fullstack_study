@@ -1,5 +1,6 @@
 function Profile(props) {
-  console.log(props); // 로그 찍어서 객체 이름 확인 
+  console.log(props); // props는 객체이다 
+  // props.name = '고라니' // props는 읽기 전용이다. 변경 불가
 
   return(
     <>
