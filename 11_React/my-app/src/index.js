@@ -20,6 +20,7 @@ import LoginControl from './chapter9/9.2/LoginControl';
 import LoginControlRefactoring from './chapter9/9.3/LoginControlRefactoring';
 import MailBox from './chapter9/9.3/MailBox';
 import MainPage from './chapter9/9.4/MainPage';
+import Toolbar from './chapter9/Toolbar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -62,9 +63,9 @@ root.render(
   // <LoginControlRefactoring />
   
   // <MailBox unreadMessages={messages} />
-  <MainPage />
+  // <MainPage />
   
-  
+  <Toolbar />
   
 
   // 3장 예제
