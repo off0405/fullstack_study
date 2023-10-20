@@ -29,6 +29,8 @@ import EssayForm from './chapter11/11.3/EssayForm';
 import FlavorForm from './chapter11/11.3/FlavorForm';
 import FileInput from './chapter11/11.3/FileInput';
 import TextInputWithFocusButton from './chapter7/7.2/7.6/TextInputWithFocusButton';
+import Reservation from './chapter11/11.4/Reservation';
+import SignUp from './chapter11/SignUp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -56,7 +58,8 @@ root.render(
 
   // 7장 예제
   // <Counter />
-  <TextInputWithFocusButton />
+  // <TextInputWithFocusButton />
+  // <FileInput />
 
   // <SetStateMerge />
 
@@ -86,6 +89,8 @@ root.render(
   // <EssayForm />
   // <FlavorForm />
   // <FileInput />
+  // <Reservation />
+  <SignUp />
   
 
   // 3장 예제
