@@ -21,6 +21,14 @@ import LoginControlRefactoring from './chapter9/9.3/LoginControlRefactoring';
 import MailBox from './chapter9/9.3/MailBox';
 import MainPage from './chapter9/9.4/MainPage';
 import Toolbar from './chapter9/Toolbar';
+import NumberList from './chapter10/10.1/NumberList';
+import ListKey from './chapter10/10.1/10.2/ListKey';
+import AttendanceBook from './chapter10/AttendanceBook';
+import Nameform from './chapter11/11.2/Nameform';
+import EssayForm from './chapter11/11.3/EssayForm';
+import FlavorForm from './chapter11/11.3/FlavorForm';
+import FileInput from './chapter11/11.3/FileInput';
+import TextInputWithFocusButton from './chapter7/7.2/7.6/TextInputWithFocusButton';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -48,6 +56,7 @@ root.render(
 
   // 7장 예제
   // <Counter />
+  <TextInputWithFocusButton />
 
   // <SetStateMerge />
 
@@ -65,7 +74,18 @@ root.render(
   // <MailBox unreadMessages={messages} />
   // <MainPage />
   
-  <Toolbar />
+  // <Toolbar />
+
+  //10장 예제
+  // <NumberList />
+  // <ListKey />
+  // <AttendanceBook />
+
+  // 11장 예제
+  // <Nameform />
+  // <EssayForm />
+  // <FlavorForm />
+  // <FileInput />
   
 
   // 3장 예제
