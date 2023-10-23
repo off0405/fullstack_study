@@ -22,16 +22,52 @@ import { useState } from "react";
 
 function SignUp() {
 
-  const [name, setName] = useState('');
-  const [gender, setGender] = useState('male');
+  // const [name, setName] = useState('');
+  // const [gender, setGender] = useState('male');
 
-  const handleChangeName = (e) => {
-    setName(e.target.value)
-  };
+  // 객체 형태로 관리
+  const [input, setInput] = useState({
+    name: '',
+    gender: 'male'
+  });
 
-  const handleChangeGender = (e) => {
-    setGender(e.target.value)
-  };
+  const { name, gender } = input;
+
+  const handleInput = (e) => {
+    const { name,  value } = e.target;
+    // console.log( name, value );
+    // const inputValue = type === 'text' ? value : value
+
+
+    // 방법 1 
+    const copyObj = {
+      ...input
+    }
+    copyObj[name] = value;
+    setInput(copyObj);
+
+    // 방법2
+    setInput({
+      ...input,
+      [name]: value
+    })
+
+    // 방법2-2
+    setInput(inputsss => ({
+      ...input,
+      [name]: value
+    }))
+  }
+
+  
+
+  // const handleChangeName = (e) => {
+  //   setName(e.target.value)
+  // };
+
+  // const handleChangeGender = (e) => {
+  //   setGender(e.target.value)
+  // };
 
   const onClick = (e) => {
     e.preventDefault();
@@ -44,7 +80,12 @@ function SignUp() {
 
       <label>
         성별
-        <select value={gender} onChange={handleChangeGender}>
+        <select
+          value={gender}
+          onChange={handleInput}
+          name="gender"
+          >
+          
           <option value="male">남</option>
           <option value="female">여</option>
         </select>
@@ -56,8 +97,10 @@ function SignUp() {
         이름:
         <input
           type="text"
+          name="name"
           value={name}
-          onChange={handleChangeName} />
+          onChange={handleInput}
+           />
       </label>
 
       <button type="submit">제출</button>

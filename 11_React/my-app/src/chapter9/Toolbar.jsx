@@ -28,8 +28,8 @@ function Toolbar(props) {
     {isLoggedIn && <span style={styles.greeting}>환영합니다</span>} 
       
     {isLoggedIn
-     ? <button onClick={onClickLogOut}>로그아웃</button>
-     : <button onClick={onClickLogin}>로그인</button>
+    ? <button onClick={onClickLogOut}>로그아웃</button>
+    : <button onClick={onClickLogin}>로그인</button>
     }
   </div>
   );
