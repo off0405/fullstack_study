@@ -1,7 +1,8 @@
-라이브 서버
-라이브 서버 프리뷰
-
-라이브 서버 프리뷰
-Live Server Preview
-
+HTMl End Tag Labels
+Image Preview
 indent-rainbow
+korean language pack for visual studio code
+liver Serveropen in defaul browser
+reactjs code snippets
+vscode-pdf
+vscode-styled-components
