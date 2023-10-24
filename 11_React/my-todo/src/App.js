@@ -1,5 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
+import { createGlobalStyle } from "styled-components";
+import reset, { Reset } from "styled-reset";
+import TodoTemplate from "./components/TodoTemplate";
+import TodoInsert from "./components/TodoInsert";
+
 
 // 패키지 설치
 // npm install styled-components styled-reset react-icons
@@ -15,28 +18,29 @@ import './App.css';
 // 글로벌(공통) 스타일 작성은 index.css에서 해도 무관하지만, 
 // styled-components를 사용해서 적용을 하고 싶다면
 // createGlobalStyle을 이용하여 컴포넌트를 만들고 가장 첫번째로 렌더링하면 됨~
+const GlobalStyle = createGlobalStyle`
+  /* reset css */
+  ${reset}
+
+
+  /* 글로벌(공통) 스타일 */
+  body {
+    background: #e9ecef;
+  }
+`;
 
 
 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <Reset />
+    <>
+      <GlobalStyle />
+      <TodoTemplate>
+        <TodoInsert/>
+      </TodoTemplate>
+    </>
   );
 }
 
