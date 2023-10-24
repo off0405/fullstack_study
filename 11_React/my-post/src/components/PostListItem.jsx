@@ -21,11 +21,11 @@ function PostListItem(props) {
 
 
 
-    const inputStyle = () => {
-      if (value === '') {
-        style
-      }
-    }
+    // const inputStyle = () => {
+    //   if (value === '') {
+    //     style
+    //   }
+    // }
   
   return (
     <>
