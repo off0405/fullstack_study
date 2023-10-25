@@ -42,24 +42,28 @@ function App() {
   // TodoList에 props로 전달
 
   const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: '수업 교안 작성하기',
-      checked: true
-    },
-    {
-      id: 2,
-      text: '시험 채점하기',
-      checked: true
-    },
-    {
-      id: 3,
-      text: '단계별 실습 예제 만들기',
-      checked: false
-    },
+    // {
+    //   id: 1,
+    //   text: '수업 교안 작성하기',
+    //   checked: true
+    // },
+    // {
+    //   id: 2,
+    //   text: '시험 채점하기',
+    //   checked: true
+    // },
+    // {
+    //   id: 3,
+    //   text: '단계별 실습 예제 만들기',
+    //   checked: false
+    // },
   ]);
 
   //  로컬스토리지에서 가져오기
+  useEffect(() => {
+    const dbTodos = JSON.parse(localStorage.getItem('todos')) || [];
+    setTodos(dbTodos);
+  }, [])
   
 
   // 로컬 스토리지에 저장(주의: DB가 아니다. DB처럼 쓰면 안된다)
