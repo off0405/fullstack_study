@@ -13,7 +13,7 @@ const TodoListWrapper = styled.div`
 // todos 배열을 props로 받아오기 map()함수를 사용해 여러 개의 TodoListItem 컴포넌트로 변환해 보여줌
 function TodoList(props) {
   console.log(props);
-  const { id, todos, onRemove } = props;
+  const { id, todos, onRemove, onToggle } = props;
 
   return (
     <TodoListWrapper>
@@ -23,12 +23,11 @@ function TodoList(props) {
 
       {/* Quiz. map()함수 이용하여 TodoListItem으로 이루어진 배열로 변환하여 반복 렌더링 */}
       {todos.map((todo)=>{
-        return <TodoListItem text = {todo.text} checked = {todo.checked} id = {todo.id} onRemove={onRemove}/>
+        console.log(todo);
+        return <TodoListItem text = {todo.text} checked = {todo.checked} id = {todo.id} onRemove={onRemove}  onToggle={onToggle}/>
         // TodoListItem{todos={todo}}
       })}
     </TodoListWrapper>
-      
-    
   );
 }
 
