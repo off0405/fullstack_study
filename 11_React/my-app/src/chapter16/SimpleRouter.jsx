@@ -77,3 +77,7 @@ function SimpleRouter(props) {
 }
 
 export default SimpleRouter;
+
+
+// 1. npm install react-router-dom
+// 
