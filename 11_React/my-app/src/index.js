@@ -47,6 +47,9 @@ import ThemeApp from './chapter15/theme/ThemeApp';
 import ComponentVariable from './chapter7/7.2/7.6/ComponentVariable';
 import SimpleRouter from './chapter16/SimpleRouter';
 import CounterEffect from './chapter7/7.2/7.3/ex1/CounterEffect';
+import EffectSummary from './chapter7/7.2/7.3/ex2/EffectSummary';
+import EffectContainer from './chapter7/7.2/7.3/ex2/EffectContainer';
+import TimerContainer from './chapter7/7.2/7.3/ex3/TimerContainer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -74,10 +77,13 @@ root.render(
 
   // 7장 예제
   // <Counter />
-  <TextInputWithFocusButton />
+  // <TextInputWithFocusButton />
   // <FileInput />
   // <ComponentVariable/>
   // <CounterEffect/>
+  // <EffectSummary/>
+  // <EffectContainer/>
+  <TimerContainer/>
 
   // <SetStateMerge />
 
