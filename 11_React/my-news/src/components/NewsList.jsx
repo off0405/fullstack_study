@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import NewsItem from './NewsItem';
+import axios from "axios";
 
 // 스타일
 const NewsListBlock = styled.div`
@@ -26,20 +27,54 @@ const sampleArticle = {
 }
 
 
-
+// usf = state 단축키
 
 // API를 요청하고,  뉴스 데이터가 들어있는 배열을 리액트 컴포넌트 배열로 변환하여 렌더링하는 컴포넌또~
 
 
 function NewsList(props) {
+  const [articles, setArticles] = useState(null);
+  const [loading, setLoading] = useState(false);     // 로딩을 상태로 관리하여 API 요청이 대기중인지 판별
+
+  // NewsList가 화면에 보이는 시점에 API를 요청
+  // => useEffect()를 사용하여 컴포넌트가 처음 렌더링 됐을 떄 한번만 요청
+  useEffect(() => {
+    // async 함수 선언
+    const fetchNewsData = async () => {
+      setLoading(true); // 로딩 시작
+      try {
+        const response = await axios.get('https://newsapi.org/v2/top-headlines?country=kr&apiKey=bbc73a729dd94a8c9125dddd3ce56598')
+        console.log(response);
+        setArticles(response.data.articles)
+      } catch (error) {
+        console.error(error);
+      }
+      setLoading(false);
+    }
+    fetchNewsData(); // 로딩 끝
+  }, []);
+
+
+  // 로딩 중일 때
+  // ❗❕쌤 추천: react-spinners 또는 Lottie File 사용 ❗❕
+
+  if (loading === true) {
+    return <NewsListBlock>Loading...</NewsListBlock>
+  }
+
+
   return (
     <NewsListBlock>
+      {/* <NewsItem article={sampleArticle} />
       <NewsItem article={sampleArticle} />
       <NewsItem article={sampleArticle} />
       <NewsItem article={sampleArticle} />
       <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
+      <NewsItem article={sampleArticle} /> */}
+
+      {/* map() 함수로 반복 렌더링하기 + 데이터 연동 */}
+      {articles?.map(article => <NewsItem key={article.url} article={article} />)}
+      {/* 💡 (articles 값이 없을 때 렌더링 막기 = null 체크) = 앤드연산(&&) 혹은 옵셔널체이닝(?) 혹은 if(!articles) {return null} 💡*/}
     </NewsListBlock>
   );
 }
