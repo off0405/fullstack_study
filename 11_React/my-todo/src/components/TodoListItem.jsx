@@ -42,7 +42,7 @@ const Text = styled.div`
 
   /* 체크되었을 때 보여줄 스타일 */
   /* 조건부 스타일링 시 여러개의 css를 설정할 때는 아래와 같이 사용 */
-  ${props => props.checked && 
+  ${props => props.checked &&
     css`
       color: #adb5bd;
       text-decoration: line-through;
@@ -69,14 +69,16 @@ const Remove = styled.div`
 
 
 function TodoListItem(props) {
-  const { id, text, checked, onRemove, onToggle  } = props;
+  const { id, text, checked, onRemove, onToggle } = props;
   return (
     <TodoListItemWrapper>
-      <CheckBox checked={checked} onClick={() => {onToggle(id)}}>
-        {checked ?  <MdCheckBox/> : <MdCheckBoxOutlineBlank />}
+      <CheckBox checked={checked} onClick={() => { onToggle(id) }}>
+        {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
       </CheckBox>
+
       <Text checked={checked}>{text}</Text>
-      <Remove onClick={() => {onRemove(id);}}>
+
+      <Remove onClick={() => { onRemove(id); }}>
         <MdRemoveCircleOutline />
       </Remove>
     </TodoListItemWrapper>

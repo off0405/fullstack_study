@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import  styled  from "styled-components";
+import styled from "styled-components";
 import { MdAdd } from "react-icons/md";
 // 할일 입력하는 창
 
@@ -48,7 +48,7 @@ function TodoInsert({ onInsert }) {
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    
+
   }
 
   const handleSubmit = (e) => {
@@ -63,7 +63,7 @@ function TodoInsert({ onInsert }) {
     onInsert(value);
     setValue(''); // value 값 초기화
   }
-  
+
 
   return (
     // form 태그 사용 시,  input에서 엔터키를 눌렀을 때도 submit 이벤트가 발생
@@ -78,7 +78,6 @@ function TodoInsert({ onInsert }) {
       />
       <StyledButton type='submit'>
         <MdAdd />
-
       </StyledButton>
     </TodoInsertWrapper>
   );

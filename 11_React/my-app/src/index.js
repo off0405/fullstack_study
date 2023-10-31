@@ -50,6 +50,7 @@ import CounterEffect from './chapter7/7.2/7.3/ex1/CounterEffect';
 import EffectSummary from './chapter7/7.2/7.3/ex2/EffectSummary';
 import EffectContainer from './chapter7/7.2/7.3/ex2/EffectContainer';
 import TimerContainer from './chapter7/7.2/7.3/ex3/TimerContainer';
+import ApiRequest from './chapter17/ApiRequest';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -69,10 +70,10 @@ root.render(
   //     <Clock />
   //   )
   // }, 1000)
-  
+
   // 5장 예제
   // <PropsUse />
-  
+
   // <NotificationList />
 
   // 7장 예제
@@ -83,7 +84,8 @@ root.render(
   // <CounterEffect/>
   // <EffectSummary/>
   // <EffectContainer/>
-  <TimerContainer/>
+  // <TimerContainer/>
+
 
   // <SetStateMerge />
 
@@ -97,10 +99,10 @@ root.render(
   // <Greeting isLoggedIn={true}/>
   // <LoginControl />
   // <LoginControlRefactoring />
-  
+
   // <MailBox unreadMessages={messages} />
   // <MainPage />
-  
+
   // <Toolbar />
 
   //10장 예제
@@ -117,7 +119,7 @@ root.render(
   // <SignUp />
   // <ReservatingRefactoring/>
   // <ReservationRefactoring />
-  
+
 
   // 12 장 예제
   // <UnitCounter />
@@ -132,11 +134,15 @@ root.render(
 
   // 15장 예제
   // <StyledPage />
-    // <Blocks />
-    // <ThemeApp />
+  // <Blocks />
+  // <ThemeApp />
 
   // 16장 예제
   // <SimpleRouter />
+
+  // 17장 예제
+  <ApiRequest />
+
 
   // 3장 예제
   // <JsxUse />

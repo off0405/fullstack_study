@@ -64,7 +64,7 @@ function App() {
     const dbTodos = JSON.parse(localStorage.getItem('todos')) || [];
     setTodos(dbTodos);
   }, [])
-  
+
 
   // 로컬 스토리지에 저장(주의: DB가 아니다. DB처럼 쓰면 안된다)
   // 추가, 수정, 삭제 각 함수에 넣어도 되지만, useEffect()를 활용하면 한번에 처리 가능 !
@@ -103,7 +103,7 @@ function App() {
     // 불변성을 지키면서 배열의 요소를 추가해야 할 때 concat() 활용
     // concat: 배열을 결합해서 새로운 배열로 반환해줌
 
-    setTodos(todos.concat(todo)); 
+    setTodos(todos.concat(todo));
     nextId.current += 1; //nextId.current = nextId.current + 1;
   }
 
@@ -117,9 +117,9 @@ function App() {
 
     // 방법2 - 배열의 메소드 이용
     // 불변성을 지키면서 배열의 요소를 제거해야 할 때 filter() 활용
-    setTodos(todos.filter( todo => todo.id !== id ));
+    setTodos(todos.filter(todo => todo.id !== id));
   }
-  
+
   // 수정 -------------------------
   // todos 배열의 특정 요소를 수정하기 위한 함수 정의 
   const handleToggle = (id) => {
@@ -136,19 +136,19 @@ function App() {
     // 방법2 - 배열의 메소드 활용
     // 불변성을 지키면서 배열의 특정 요소를 업데이트 해야 할 때
     setTodos(todos.map(todo => todo.id === id ? { ...todo, checked: !todo.checked } : todo))
-    
-    
+
+
   }
-  
-  
+
+
 
   return (
     // <Reset />
     <>
       <GlobalStyle />
       <TodoTemplate>
-        <TodoInsert onInsert={handleInsert}/>
-        <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle}/>
+        <TodoInsert onInsert={handleInsert} />
+        <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle} />
       </TodoTemplate>
     </>
   );
