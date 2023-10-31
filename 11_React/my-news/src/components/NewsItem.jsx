@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from "styled-components";
+
 
 
 // 각 뉴스 정보를 보여주는 컴포넌트 
