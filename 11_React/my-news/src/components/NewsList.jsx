@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import NewsItem from './NewsItem';
 import axios from "axios";
+import { useParams } from 'react-router-dom';
 
 // 스타일
 const NewsListBlock = styled.div`
@@ -33,6 +34,10 @@ const sampleArticle = {
 
 
 function NewsList(props) {
+  const { category = 'all' } = useParams();
+  console.log(category);
+
+
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false);     // 로딩을 상태로 관리하여 API 요청이 대기중인지 판별
 
@@ -43,7 +48,13 @@ function NewsList(props) {
     const fetchNewsData = async () => {
       setLoading(true); // 로딩 시작
       try {
-        const response = await axios.get('https://newsapi.org/v2/top-headlines?country=kr&apiKey=bbc73a729dd94a8c9125dddd3ce56598')
+        // const response = await axios.get('https://newsapi.org/v2/top-headlines?country=kr&apiKey=bbc73a729dd94a8c9125dddd3ce56598')
+
+        // API 호출 시 카테고리 지정하기
+        // 카테고리가 all 일때는 아무것도 들어가면 안되고, 그 외엔 `&category=해당 카테고리 값` 넣기
+        const query = category === 'all' ? '' : `&category=${category}`;
+        const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=bbc73a729dd94a8c9125dddd3ce56598`)
+
         console.log(response);
         setArticles(response.data.articles)
       } catch (error) {
@@ -52,7 +63,7 @@ function NewsList(props) {
       setLoading(false);
     }
     fetchNewsData(); // 로딩 끝
-  }, []);
+  }, [category]);
 
 
   // 로딩 중일 때

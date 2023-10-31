@@ -21,3 +21,13 @@ https://velopert.com/3612
 <로딩화면 >
 https://lottiefiles.com/svg-to-lottie
 react-spinners
+
+
+
+10-31-------------
+옵셔널 체이닝
+map함수 쓰기
+useEffect
+useRef
+useParams
+const { category = 'all' } = useParams(); 구조분해할당 기본값 적용 'all'

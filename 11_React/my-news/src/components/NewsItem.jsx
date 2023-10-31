@@ -42,7 +42,7 @@ const NewsItemBlock = styled.div`
 `;
 
 function NewsItem({ article }) {
-  const { title, description, url, urlToImage } = article
+  const { title, description, url, urlToImage } = article;
 
   return (
     <NewsItemBlock>

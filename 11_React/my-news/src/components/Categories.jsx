@@ -1,4 +1,7 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import styled from "styled-components";
+
 
 // 고정값들은 전역 변수로 선언하여 사용
 // 여기서 name은 실제 카테고리 값, text는 렌더링할 때 사용할 한글 카테고리명
@@ -71,12 +74,13 @@ function Categories(props) {
   return (
     <CategoriesBlock>
       {categories.map(c => {
-        <Category
-          key={c.name}
-          to={c.name === 'all' ? '/' : `/${c.name}`} // 전체보기를 누르면 홈?으로 , 전체보기 아닌 다른것을 누르면 c.name (해당하는 페이지)로 이동
-        >
-          {c.text}
-        </Category>
+        return (
+          <Category
+            key={c.name}
+            to={c.name === 'all' ? '/' : `/${c.name}`} // 전체보기를 누르면 홈?으로 , 전체보기 아닌 다른것을 누르면 c.name (해당하는 페이지)로 이동
+          >
+            {c.text}
+          </Category>)
       })}
     </CategoriesBlock>
   );
