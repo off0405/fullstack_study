@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "../features/counterSlice";
+import productReducer from "../features/productSlice";
 
 // 1. Redux Store 만들기
 // 전역 state를 보관하는 저장소
@@ -8,11 +9,13 @@ import counterReducer from "../features/counterSlice";
 export const store = configureStore({
   // 4. Redux Store에 Reducer 추가하기
   // 리듀서Reducer를 Store에 등록을 해야 컴포넌트들이 전역 state를 사용할 수 있어요
+  // 이름 ***Reducer로 바꿔주기~
   reducer: {
-    counter: counterReducer
+    counter: counterReducer,
+    product: productReducer
   }
-
 });
+
 
 // (참고)
 // 한 개의 프로젝트는 단 하나의 스토어만 가질 수 있음
@@ -23,3 +26,4 @@ export const store = configureStore({
 
 
 // 2. 리액트에 Redux Store 제공하기
+

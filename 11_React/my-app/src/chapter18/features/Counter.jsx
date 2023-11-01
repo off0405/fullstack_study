@@ -11,6 +11,9 @@ function Counter(props) {
   // Redux Store에 요청을 보내주는 함수
   const dispatch = useDispatch();
 
+
+  // dispatch , payload 는 인자값이 필요함 (당연)
+
   const [incrementAmount, setIncrementAmount] = useState('2');
   const incrementValue = Number(incrementAmount) || 0; // NaN일 경우 기본값 0
 

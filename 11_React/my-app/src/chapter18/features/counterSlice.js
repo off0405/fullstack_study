@@ -19,6 +19,7 @@ export const counterSlice = createSlice({
 
 
   // reducer : state를 변경하는 함수들을 정의하고 관련된 action을 생성
+  // Re(act State Pro)ducer => Reducer
   // 현재 state와 action 객체를 파라미터로 받아오고 필요한 경우 상태를 업데이트하고 새 상태를 반환하는 함수
 
   reducers: {
