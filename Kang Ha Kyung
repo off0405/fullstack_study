@@ -31,3 +31,9 @@ useEffect
 useRef
 useParams
 const { category = 'all' } = useParams(); 구조분해할당 기본값 적용 'all'
+
+my-new
+- NewsItem 다시보기
+
+
+콜백함수 :전달인자로 다른 함수에 전달되는 함수
