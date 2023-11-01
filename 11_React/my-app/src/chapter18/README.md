@@ -2,9 +2,9 @@
 0. Redux Toolkit and React-Redux 설치하기
 npm install @reduxjs/toolkit react-redux
 
-1. Redux Store 만들기 (app/store.js)
+1. Redux Store 만들기 (app/store.js) 💙 configureStore
 
-2. 리액트에 Redux Store 제공하기 (index.js)
+2. 리액트에 Redux Store 제공하기 (index.js) 💙 Provider
 
 3. Redux State Slice 만들기 (features/counter/counterSlice.js)
 

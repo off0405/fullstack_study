@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import Layout from "./pages/Layout";
+import Main from "./pages/Main";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -40,8 +41,8 @@ function App() {
       {/* 헤더 영역: 상단 네비게이션 바 */}
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="cart" element={<undefined />} />
-
+          {/* index: index route(여기서는 default child Route) */}
+          <Route index element={<Main />} />
         </Route>
       </Routes>
 

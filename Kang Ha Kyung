@@ -26,7 +26,7 @@ react-spinners
 
 10-31-------------
 옵셔널 체이닝
-map함수 쓰기 -> ProductList 가서 쓴거 확인해봐
+map함수 쓰기 -> ProductList 가서 쓴거 확인해봐     🟡chapter 5 -> CommentList 확인
 useEffect
 useRef
 useParams
