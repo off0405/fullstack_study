@@ -29,7 +29,7 @@ function Counter(props) {
           // 함수 실행 결과: 
           //   {
           //     payload: undefined;
-          // type: "counter/decrement";
+          //     type: "counter/decrement";
           //   }
           // 실습: 인자값으로 액션 객체 직접 넣어보기
 
