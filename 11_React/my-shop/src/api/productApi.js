@@ -61,7 +61,7 @@ export const getMoreProducts = async () => {
 
 
 
-// 만약 서버로 데이터를 보내야 한다면...?
+// 만약 서버로 데이터를 보내야 한다면...? = post
 // json-server 이용시 테스트 가능
 export const orderProduct = async (productId, orderCount) => {
   try {

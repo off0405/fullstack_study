@@ -5,9 +5,10 @@ import styled from 'styled-components';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
-import { addMoreProduct, getAllProducts, selectProductList } from '../features/product/productSlice';
+import { addMoreProduct, getAllProducts, getMoreProductsAsync, selectProductList, selectStatus } from '../features/product/productSlice';
 import ProductListItem from '../components/ProductListItem';
 import { getMoreProducts } from '../api/productApi';
+import { BounceLoader, FadeLoader, PacmanLoader } from "react-spinners";
 
 const MainBackground = styled.div`
   height: 500px;
@@ -17,9 +18,16 @@ const MainBackground = styled.div`
   background-position: center;
 `;
 
+const StyledLoading = styled(FadeLoader)`
+  margin: 0 auto;
+  `
+
 function Main(props) {
   const dispatch = useDispatch(); // 스토어에 보낼때
   const productList = useSelector(selectProductList); // 스토어에서 가져올때
+
+
+  const status = useSelector(selectStatus); // api 요청 상태(로딩 상태 )를 담고 있어요
 
   // 처음 마운트 됐을 떄 서버에 상품 목록 데이터를 요청하고 
   // 그 결과를 Redux Store에 전역 상태로 저장
@@ -39,6 +47,10 @@ function Main(props) {
   const handleGetMoreProduct = async () => {
     const result = await getMoreProducts()
     dispatch(addMoreProduct(result));
+  }
+
+  const handleGetMoreProductAsync = () => {
+    dispatch(getMoreProductsAsync(status));
   }
 
 
@@ -92,6 +104,13 @@ function Main(props) {
           </Row>
         </Container>
 
+
+        {/* 로딩 만들기 */}
+        {status === 'loading' &&
+          <div>
+            <StyledLoading color="#36d7b7" />
+          </div>}
+
         {/* 상품 더보기 기능 만들기 
           더보기 버튼 클릭 시 axios를 사용하여 데이터 요청
           받아온 결과를 전역 상태에 추가하기 위해 slice에 reducer 추가 및 export 
@@ -100,7 +119,12 @@ function Main(props) {
         <Button variant='secondary' className='mb-4' onClick={handleGetMoreProduct}>
           더보기
         </Button>
-      </section>
+
+        {/* thunk 를 이용한 비동기 작업 처리하기  */}
+        <Button variant='secondary' className='mb-4' onClick={handleGetMoreProductAsync}>
+          더보기 {status}
+        </Button>
+      </section >
     </>
   );
 }
