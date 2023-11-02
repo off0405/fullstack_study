@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 // 리액트(JS)에서 이미지 파일 가져오기
 import yonexImg from "../images/yonex.jpg";
 import styled from 'styled-components';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProducts, selectProductList } from '../features/product/productSlice';
+import { addMoreProduct, getAllProducts, selectProductList } from '../features/product/productSlice';
 import ProductListItem from '../components/ProductListItem';
+import { getMoreProducts } from '../api/productApi';
 
 const MainBackground = styled.div`
   height: 500px;
@@ -32,6 +33,14 @@ function Main(props) {
       })
     // 서버에 상품 목록 요청
   }, []);
+
+
+  // 더보기 버튼 api
+  const handleGetMoreProduct = async () => {
+    const result = await getMoreProducts()
+    dispatch(addMoreProduct(result));
+  }
+
 
 
   return (
@@ -85,7 +94,12 @@ function Main(props) {
 
         {/* 상품 더보기 기능 만들기 
           더보기 버튼 클릭 시 axios를 사용하여 데이터 요청
-          받아온 결과를 전역 상태에 추가 */}
+          받아온 결과를 전역 상태에 추가하기 위해 slice에 reducer 추가 및 export 
+          스토어에 dispatch로 요청 보내기 */}
+        {/* HTTP 요청 코드를 함수로 만들어서 api 폴더로 추출 */}
+        <Button variant='secondary' className='mb-4' onClick={handleGetMoreProduct}>
+          더보기
+        </Button>
       </section>
     </>
   );
