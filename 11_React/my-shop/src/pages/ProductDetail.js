@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Alert, Button, Col, Container, Form, Nav, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { clearSelectedProduct, getSelectedProducts, selectSelectedProduct } from '../features/product/productSlice';
 import styled, { keyframes } from 'styled-components';
 import { toast } from 'react-toastify';
+import TabContents from '../components/TabContents';
 
 
 // 스타일드 컴포넌트를 이요한 애니메이션 속성 적용
@@ -34,8 +35,11 @@ function ProductDetail(props) {
   const formatter = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' });
 
 
-
+  const [alert, setAlert] = useState(true);  // info alert 창 상태
   const [orderCount, setOrderCount] = useState(1); // 주문 수량 상태 
+  const [showTabIndex, setShowTabIndex] = useState(0); // 탭 구현 state
+  const [showTab, setShowTab] = useState('detail'); // 탭 상태 state
+
 
   // 처음 마운트 됐을 때 서버에 상품 id를 이용하여 데이터를 요청하고 
   // 그 결과를 리덕스 스토어에 저장
@@ -58,7 +62,6 @@ function ProductDetail(props) {
     }
   }, []);
 
-  const [alert, setAlert] = useState(true); // info alert 창 상태 
 
   useEffect(() => {
     const timeout = setTimeout(() => { setAlert(false) }, 3000);  // 화면에서 보여지는 "상태"에 관한 함수라서 useEffct에서 작성...
@@ -113,6 +116,64 @@ function ProductDetail(props) {
           <Button variant='primary'>주문하기</Button>
         </Col>
       </Row>
+
+      {/* 탭 버튼 UI 만들기 */}
+      <Nav variant="tabs" defaultActiveKey="link-0" className='my-3'>
+        <Nav.Item>
+          {/* <Nav.Link eventKey="link-0" onClick={() => setShowTabIndex(0)}>상세정보</Nav.Link> */}
+          <Nav.Link eventKey="link-0" onClick={() => setShowTab('detail')}>상세정보</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          {/* <Nav.Link eventKey="link-1" onClick={() => setShowTabIndex(1)}>리뷰</Nav.Link> */}
+          <Nav.Link eventKey="link-1" onClick={() => setShowTab('review')}>리뷰</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          {/* <Nav.Link eventKey="link-2" onClick={() => setShowTabIndex(2)}>Q&amp;A</Nav.Link> */}
+          <Nav.Link eventKey="link-2" onClick={() => setShowTab('q&a')}>Q&amp;A</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          {/* <Nav.Link eventKey="link-3" onClick={() => setShowTabIndex(3)}>반품/교환정보</Nav.Link> */}
+          <Nav.Link eventKey="link-3" onClick={() => setShowTab('exchange')}>반품/교환정보</Nav.Link>
+        </Nav.Item>
+      </Nav>
+
+      {/* 탭 내용을 다 만들어 놓고 조건부 렌더링하면 됨 */}
+      {/* 방법 1: 삼항 연산자 사용 (가독성 나빠용😡) */}
+      {/* {showTabIndex === 0
+        ? <div>탭 내용 1</div>
+        : showTabIndex === 1
+          ? <div>탭 내용 2</div>
+          : showTabIndex === 2
+            ? <div>탭 내용 3</div>
+            : showTabIndex === 3
+              ? <div>탭 내용 4</div>
+              : null
+      } */}
+
+      {/* 방법 2: 컴포넌트로 추출 */}
+      {/* <TabContents showTabIndex={showTabIndex} /> */}
+
+      {/* 방법 3: 배열이나 객체 형태로 만들어서 조건부 렌더링(편법) 하기 - 실무 사용 */}
+      {/* 배열 형태 */}
+      {/* {
+        [
+          <div>탭 내용1</div>,
+          <div>탭 내용2</div>,
+          <div>탭 내용3</div>,
+          <div>탭 내용4</div>
+        ][showTabIndex]
+      } */}
+
+      {/* 객체 형태 */}
+      {
+        {
+          'detail': <div>탭 내용1</div>,
+          'review': <div>탭 내용2</div>,
+          'q&a': <div>탭 내용3</div>,
+          'exchange': <div>탭 내용4</div>,
+        }[showTab]  // 객체 변수에 접근할 때는 [] 사용해서 찾아주기
+      }
+
     </Container>
   );
 }
