@@ -82,6 +82,10 @@ function Main(props) {
             */}
           </Row>
         </Container>
+
+        {/* 상품 더보기 기능 만들기 
+          더보기 버튼 클릭 시 axios를 사용하여 데이터 요청
+          받아온 결과를 전역 상태에 추가 */}
       </section>
     </>
   );
