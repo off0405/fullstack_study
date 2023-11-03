@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Alert, Button, Col, Container, Form, Nav, Row } from 'react-bootstrap';
+import { Alert, Button, Col, Container, Form, Modal, Nav, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { clearSelectedProduct, getSelectedProducts, selectSelectedProduct } from '../features/product/productSlice';
 import styled, { keyframes } from 'styled-components';
 import { toast } from 'react-toastify';
 import TabContents from '../components/TabContents';
+import { addItemToCart } from '../features/cart/cartSlice';
 
 
 // 스타일드 컴포넌트를 이요한 애니메이션 속성 적용
@@ -31,6 +32,7 @@ function ProductDetail(props) {
   const dispatch = useDispatch(); // 스토어에 액션을 보낼 때  <-> useSelector
   const product = useSelector(selectSelectedProduct);
 
+
   // 숫자 포맷 적용 "INTL"
   const formatter = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' });
 
@@ -39,7 +41,10 @@ function ProductDetail(props) {
   const [orderCount, setOrderCount] = useState(1); // 주문 수량 상태 
   const [showTabIndex, setShowTabIndex] = useState(0); // 탭 구현 state
   const [showTab, setShowTab] = useState('detail'); // 탭 상태 state
-
+  const [showModal, setShowModal] = useState(false); // 모달 state
+  const handleCloseModal = () => setShowModal(false)
+  const handleOpenModal = () => setShowModal(true)
+  const navigate = useNavigate();
 
   // 처음 마운트 됐을 때 서버에 상품 id를 이용하여 데이터를 요청하고 
   // 그 결과를 리덕스 스토어에 저장
@@ -70,6 +75,13 @@ function ProductDetail(props) {
     }
   }, []);
 
+
+  // 상품 상세페이지에 들어갔을 때 해당 상품이 존재할 때만 id값을 localStorage에 추가
+  useEffect(() => {
+    let latestViewed = JSON.parse(localStorage.getItem('latestViewed')) || []; // 처음에 null이니까 기본값으로 빈배열 넣어줌
+    // id 값을 넣기 전에 기존 배열에 존재하는지 검사하거나 
+    // 아ㅓ니
+  }, [])
 
   const handleChangeOrderCount = (e) => {
     if (isNaN(e.target.value)) {   // 숫자 외 입력 시 유효성 검사
@@ -114,6 +126,18 @@ function ProductDetail(props) {
 
 
           <Button variant='primary'>주문하기</Button>
+          {/* // {id, title, price, count } */}
+
+          <Button variant='warning' onClick={() => {
+            dispatch(addItemToCart({
+              ...product,
+              count: orderCount
+            }))
+
+            handleOpenModal();
+          }}>장바구니</Button>
+
+
         </Col>
       </Row>
 
@@ -173,6 +197,29 @@ function ProductDetail(props) {
           'exchange': <div>탭 내용4</div>,
         }[showTab]  // 객체 변수에 접근할 때는 [] 사용해서 찾아주기
       }
+
+
+      {/* 장바구니에 담기 모달 만들기
+          추후 공통 모달로 만드는 것이 좋음 */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>🙄고니네 샵 알림</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          장바구니에 상품을 담았습니다.
+          장바구니로 이동하시겠습니까❔
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            취소
+          </Button>
+          <Button variant="primary" onClick={() => navigate('/cart')} >
+            장바구니 보기
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+
 
     </Container>
   );
