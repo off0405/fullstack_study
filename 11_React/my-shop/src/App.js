@@ -28,6 +28,14 @@ const GlobalStyle = createGlobalStyle`
   .cursor-pointer {
     cursor: pointer;
   }
+
+  /* 넘치는 텍스트 줄임표(...) 만들기 */
+  .text-ellipsis {
+    white-space: nowrap; // 줄바꿈 안되도록
+    overflow: hidden; // 넘친 부분 숨기기
+    text-overflow: ellipsis; // 넘친 부분을 어떻게 보일 지 지정할 수 있어요
+  }
+
 `;
 
 // const StyledButton = styled(Button)`

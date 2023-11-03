@@ -9,6 +9,7 @@ import { addMoreProduct, getAllProducts, getMoreProductsAsync, selectProductList
 import ProductListItem from '../components/ProductListItem';
 import { getMoreProducts } from '../api/productApi';
 import { BounceLoader, FadeLoader, PacmanLoader } from "react-spinners";
+import LatestView from '../components/LatestView';
 
 const MainBackground = styled.div`
   height: 500px;
@@ -125,6 +126,11 @@ function Main(props) {
           더보기 {status}
         </Button>
       </section >
+
+      {/* 최근 본 상품 컴포넌트 */}
+      <LatestView />
+
+
     </>
   );
 }
