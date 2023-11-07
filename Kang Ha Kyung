@@ -62,3 +62,8 @@ ProductDetail -> 탭 내용 구현하는 방법 4가지
 
 
 JSON.parse()
+
+<netlify 배포할때>
+npm run build
+
+CI=false npm run build
