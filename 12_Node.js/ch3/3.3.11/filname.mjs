@@ -3,4 +3,4 @@ console.log('__filename은 에러');
 
 // console.log(__filename); // 에러 발생
 
-console.log(console);
+console.log(console); 
