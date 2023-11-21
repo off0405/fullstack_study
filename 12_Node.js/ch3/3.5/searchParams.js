@@ -1,4 +1,4 @@
-// searchParams는 search(쿼리스트링, ? 뒤) 문자열을 다루기 쉽게 객체화 시킨 것
+// 🤍searchParams는 search(쿼리스트링, ? 뒤) 문자열을 다루기 쉽게 객체화 시킨 것
 const myURL = new URL('http://www.gilbut.co.kr/?page=3&limit=10&category=nodejs&category=javascript');
 console.log('searchParams:', myURL.searchParams);
 console.log('searchParams.getAll():', myURL.searchParams.getAll('category')); // 키에 해당하는 모든 값을 가져옴

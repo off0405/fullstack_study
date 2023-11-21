@@ -6,3 +6,14 @@ liver Serveropen in defaul browser
 reactjs code snippets
 vscode-pdf
 vscode-styled-components
+
+
+Git Graph
+HTML End Tag Labels
+Image preview
+indent-rainbow
+Open in Default Browser
+Reactjs code snippets
+Siimple React snippets
+vscode-pdf
+vscode-styled-components
