@@ -14,18 +14,17 @@ fs.readFile('./readme.txt')
   })
   .catch((err) => { console.error(err); })
 
-// const a = fs.readFile('./readme.txt')
-// const fsReadFile = async a => {
+// const a = async () => {
 //   try {
-//     await console.log(data);
-//     await console.log(data.toString());
+//     const data = await fs.readFile('./readme.txt')
+//     console.log(data.toString());
 //   } catch (error) {
 //     console.error(error);
 //   }
 // }
 
+a();
 
-// fsReadFile();
 
 // 🤍toString() 함수 : 사람이 읽을 수 있게 바꿈
 
