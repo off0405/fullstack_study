@@ -1,2 +1,6 @@
 module.exports
 require('경로')
+
+crypto.creatHash().update().digest()
+
+fs모듈 : const fs = require('fs')
