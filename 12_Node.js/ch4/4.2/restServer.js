@@ -26,6 +26,8 @@ http.createServer(async (req, res) => {
         return res.end(JSON.stringify(users)); // 응답으로 json 포맷으로 바꿔서 내려줌
       }
 
+
+      // GET 요청이면서 /도 /about도 /users도 아니면!
       console.log(req.url);
       try {
         // const data = await fs.readFile(`.${req.url}`); // 상대 경로 사용
@@ -47,7 +49,7 @@ http.createServer(async (req, res) => {
           const { name } = JSON.parse(body); // json 문자열을 객체로 변환
           const id = Date.now(); // id값 임의 생성
           users[id] = name;
-          res.writeHead(201, { 'Content-Type': 'text/plain; charset=utf-8' }); // 201: Created(생성됨)
+          res.writeHead(201, { 'Content-Type': 'text/plain; charset=utf-8' }); // 201: Created(생성됨) - 그냥 200 보내도 되는데 조금 더 의미있게 쓰려면 201... 실무에서는 그냥 200...
           res.end('등록 성공'); // Response에서 응답 데이터 확인 가능
         });
       }
@@ -75,6 +77,11 @@ http.createServer(async (req, res) => {
         return res.end(JSON.stringify(users));
       }
     }
+
+    // 주소에 해당하는 라우트를 못 찾았다는 404 Not Found error 발생
+    res.writeHead(404)
+    return res.end('NOT FOUND')
+
   } catch (err) {
     console.error(err);
     res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' }); // 500: Internal Server Error(서버 에러)
@@ -84,3 +91,12 @@ http.createServer(async (req, res) => {
   .listen(8082, () => {
     console.log('8082번 포트에서 서버 대기 중입니다');
   });
+
+
+// (참고) HTTP 상태 코드
+// https://developer.mozilla.org/ko/docs/Web/HTTP/Status
+
+// 위 코드는 서버의 동작 흐름(맥락)만 이해할 것
+// 기본적으로는 Node.js의 http 모듈만으로도 서버 구성이 가능하나 코드가 상당히 복잡하고 지저분
+// 실제로는 웹 프레임워크 사용하여 더 효율적으로 작성
+// 예: Express, koa, fastify, 
