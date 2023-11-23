@@ -46,3 +46,21 @@ async function getUser() { // 로딩 시 사용자 가져오는 함수
 }
 
 window.onload = getUser; // 화면 로딩 시 getUser 호출
+
+// 폼 제출(submit) 시 실행
+document.getElementById('form').addEventListener('submit', async (e) => {
+  e.preventDefault()
+  const name = e.target.username.value;
+  if (!name) {
+    return alert('이름을 입력하세요')
+  }
+  try {
+    await axios.post('/user', { name: name })
+    getUser();
+  } catch (err) {
+    console.error(err);
+  }
+  e.target.username.value = '';
+})
+
+// 요청 데이터는 Payload 탭에 있고, 응답 데이터는 Response 탭에서 확인

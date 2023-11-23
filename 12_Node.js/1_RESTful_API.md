@@ -40,3 +40,18 @@ method는 크게 4가지 방식이 있음
 요청 하나는 최종 응답전까지 여러 단계를 거쳐도 됨
 6. Code on Demand:
 서버는 유저에게 실행 가능한 코드를 보내줄 수도 있음
+
+
+- 위 원칙에 따라 RESTful한(원칙을 잘 지킨) API 이름 짓기
+1. URL을 동사보다는 최대한 명사로 작성 (동사의 역할은 method가 함)
+2. 하위 문서(구조)를 나타낼 땐 / 기호 사용
+3. 파일 확장자(예: .html) 쓰지 말기
+4. 띄어쓰기는 언더바(_) 대신 대시(-) 이용 /total-news
+5. 자료 하나 당 하나의 URL 
+
+- 좋은 REST API 예시
+GET facebook.com/natgeo/photos => natgeo 계정에 올린 사진들
+GET facebook.com/bbc/photos => bbc 계정에 올린 사진들
+GET instagram.com/explore/tags/kpop => 태그가 kpop인 것들을 탐색
+GET instagram.com/explore/tags/food => 태그가 food인 것들을 탐색
+GET example.com/product/65535 => 상품 id가 65535인 상품의 정보
