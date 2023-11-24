@@ -4,3 +4,11 @@ require('경로')
 crypto.creatHash().update().digest()
 
 fs모듈 : const fs = require('fs')
+
+
+
+✔ 안전한 서버 이어주기
+  res.sendFile(path.join(__dirname, '/index.html'))
+
+
+ 라우터 : 원래는 전화 교환기와 비슷하게 연결 경로를 자동으로 전환하여 주는 기계를 라우터
