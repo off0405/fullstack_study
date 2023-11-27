@@ -3,6 +3,7 @@ const path = require('path');
 const dotenv = require('dotenv')
 const morgan = require('morgan')
 const cookieParser = require('cookie-parser')
+const session = require('express-session')
 
 // dotenv: 다덴부~ 환경 변수(시스템에 따른 설정값이나 비밀키 등) 설정
 // http://localhost:3001
@@ -56,6 +57,20 @@ app.use(express.urlencoded({ extended: true }))
 // 다만 FormData로 파일을 보내는 경우 urlencoded()로 처리 못함 => 이 때는 multer 사용
 
 
+// express-session: 요청마다 개인의 저장 공간을 만들어주는 세션 관리용 미들웨어
+// 직접 만들어 복잡하게 사용하던 세션을 편하게 관리
+// 🤨옵션들 그냥 공식처럼 외우긔~ 3가지
+app.use(session({
+  resave: false, // 요청이 왔을 때 세션에 수정사항이 생기지 않아도 다시 저장할지 여부
+  saveUninitialized: false, // 세션에 저장할 내역이 없더라도 처음부터 세션을 생성할지 여부
+  secret: process.env.COOKIE_SECRET, // 비밀키: 세션 하나 만들 때 세션 문자열(=세션ID)을 암호화해서 보냄
+  cookie: { // 세션 쿠키에 대한 설정
+    httpOnly: true, // JS에서 쿠키에 접근하지 못하게 설정
+  },
+  name: 'session-cookie', // 세션 쿠키 이름에 대한 설정, 기본값은 'connect.sid'
+}))
+
+
 app.get('/', (req, res) => {
   // 쿠키 사용하기
   // 이전 방식: 임의로 만든 parseCookies() 함수 사용해서 객체로 변환
@@ -91,11 +106,21 @@ app.get('/', (req, res) => {
   console.log(req.body.name);
   console.log('----------------'); // 나중에 직접 테스트 해볼것
 
+
+  // req.session: 요청을 보낸 사용자에 대한 고유한 세션
+  req.session.name = 'goni' // 세션 등록하면 세션 쿠키는 알아서 내려줌
+  // 세션 ID 확인
+  // 해당 세션 ID로 세션에 등록된 정보기 없으면 세션 ID는 요청마다 새롭게 생성됨
+  console.log(req.session.id);
+  console.log(req.sessionID);
+
+
+
   res.sendFile(path.join(__dirname, '/index.html'))
 })
 
 
-
+// form
 app.post('/', (req, res) => {
   console.log(req.body);
 })
@@ -103,7 +128,8 @@ app.post('/', (req, res) => {
 
 // ajax
 app.post('/', (req, res) => {
-  console.log(req.body.username);
+  console.log(req.body);
+  // res.redirect('다시 보내고 싶은 주소')  
 })
 
 app.listen(app.get('port'), () => {
