@@ -51,8 +51,9 @@ app.use((req, res, next) => {
 
 
 
-// 404 
+// 404 처리 미들웨어
 // 따로 404 처리 미들웨어 안만들면 Express가 알아서 기본적인 처리를 해줌
+// 위 라우터에 하나라도 안걸리면 해당 미들웨어 실행됨
 app.use((req, res, next) => {
   res.status(404).send('404 못찾겠어요~')
 });
@@ -80,8 +81,10 @@ app.get('/', (req, res) => { // GET 요청이고 url이 '/' 일 때
   // res.send('hello express');  // 문자나 간단한 HTML
   // res.sendFile(path.join(__dirname, '/index.html')) // 파일 
   // res.json({ name: 'goni', age: 22 }) // 객체를 json포맷으로!  res.writeHead(200, { Content-Type: application/json }) + res.end(JSON.stringify({ name: 'goni', age: 22 }))
-  // res.render() // 
-  // 그 외 end(), redirect()도 있음
+  // res.render() //  템플릿 엔진 사용하여 응답을 보낼 때
+  // 그 외
+  // end() 데이터 없이 응답을 보낼 때
+  // redirect() '/'로 이동하라는 응답을 보낼 때
 
   // 여기서 참고로
   // sendFile() / render()는 SSR(Server Side Rendering) 방식의 웹 서버 만들 때 많이 사용해요
@@ -159,5 +162,23 @@ app.listen(app.get('port'), () => {
 })
 // 🥦서버 실행법 3가지
 // 1) node app.js
-// 2) nodemon app
+// 2) nodemon app (글로벌 설치 또는 npx 사용 시)
 // 3) npm start (package.json/"script"에 매크로처럼 추가해주기)
+
+
+
+// 💌정리
+// 서버 코드의 구조(위에서부터 차례대로)
+// 1) 필요한 모듈 가져오기 => require();
+// 2) express()로 app 만들기
+// 3) 앱 관련 설정들 => app.set()
+// 4) 공통 미들웨어들 넣기
+// 5) 라우터들 작성
+// 6) 404 또는 에러 처리 미들웨어(라우터들 밑에)
+
+// Express (웹 프레임워크) 장점
+// 1) 복잡하게 if문으로 분기 처리 하지 않아도 된다
+// 2) 간결한 코드, 쉬운 응답 처리
+// 3) 기본적인 에러 처리를 해줌
+// 예: /abc와 같은 없는 경로로 접속 시 알아서 404 에러를 보내줌
+// 예: 서버쪽 에러 발생 시 알아서 500 에러를 보내줌
