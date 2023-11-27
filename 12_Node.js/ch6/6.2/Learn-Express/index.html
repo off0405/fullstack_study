@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>익스프레스 서버</title>
+</head>
+
+<body>
+  <h1>익스프레스</h1>
+  <p>배워봅시다~</p>
+  <form id=""></form>
+  <div>
+    <form action="/" method="post">
+      <!-- form ❗ action: 원하는 URL  method: 어떤 방식(GET, POST ..) -->
+      <input type="text" id="username" name="username">
+      <button type="submit">등록</button>
+    </form>
+  </div>
+
+  <div>
+    <form id="form">
+      <input type="text" id="username" name="username">
+      <button type="submit">ajax등록</button>
+    </form>
+  </div>
+
+
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    document.getElementById('form').addEventListener('submit', async (e) => {
+      e.preventDefault() // submit 이벤트 기본 동작: 폼데이터를 서버로 전송하고 새로 고침
+      const username = e.target.username.value;
+      if (!username) {
+        return alert('이름을 입력하세요')
+      }
+      try {
+        await axios.post('/', { name: username })
+        getUser();
+      } catch (err) {
+        console.error(err);
+      }
+      e.target.username.value = '';
+    })
+  </script>
+
+
+</body>
+
+</html>
