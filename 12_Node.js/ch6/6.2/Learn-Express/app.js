@@ -4,6 +4,8 @@ const dotenv = require('dotenv')
 const morgan = require('morgan')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
+const multer = require('multer')
+const fs = require('fs')
 
 // dotenv: 다덴부~ 환경 변수(시스템에 따른 설정값이나 비밀키 등) 설정
 // http://localhost:3001
@@ -71,11 +73,56 @@ app.use(session({
 }))
 
 
+//  미들웨어간 데이터 공유 및 전달하기
+// 1) app.set은 서버 내내 유지
+// 2) req.session은 나에 한해서(=같은 세션 안에서) 계속 유지하고 싶은 데이터 => 로그인 유저 정보
+// 3) req, res는 요청 하나 동안만 유지(1회성)
+app.use((req, res, next) => {
+  req.data = '전달 데이터'
+  res.locals.data = '데이터 넣기'; // 일반적으로 이렇게 사용
+  next();
+})
+
+
+// 😎 multer 설정하기
+// 서버 시작할 떄 uploads 폴더 만들기
+try {
+  fs.readdirSync('uploads')
+} catch (err) {
+  console.error('uploads 폴더가 없어 uploads 폴더를 생성합니다.');
+  fs.mkdirSync('uploads');
+}
+
+// multer 자체가 미들웨어는 아니고 multer 함수를 호출하면 나오는 객체 안에 4가지 미들웨어가 들어있음
+const upload = multer({
+  storage: multer.diskStorage({ // 하드디스크에 저장(실제 서버 운영 시 서버 디스크 대신에 클라우드 스토리지 서비스에 저장하는게 좋음)
+    destination(req, file, done) {// 어디에 저장할지
+      done(null, 'uploads/'); // 주의! uploads 폴더가 없으면 업로드 시 에러남
+    },
+    filename(req, file, done) { // 어떤 이름으로 저장할지
+      const ext = path.extname(file.originalname); // 확장자 추출
+      done(null, path.basename(file.originalname, ext) + Date.now() + ext)
+      // 파일명 + 날짜/시간 + 확장자
+      // 이렇게 하는 이유? 파일 이름이 중복되면 덮어씌우기 때문에
+    }
+    // done(에러 시 에러값, 성공 시 전달할 값)  //  에러 발생 시 에러 처리 미들웨어로
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 } // 파일 사이즈(바이트 단위) : 5MB로 제한(그 이상 업로드 시 400번대 에러 발생)bit, kb, mb
+})
+
+app.get('/upload', (req, res) => {
+
+})
+
+
+
+
 app.get('/', (req, res) => {
   // 쿠키 사용하기
   // 이전 방식: 임의로 만든 parseCookies() 함수 사용해서 객체로 변환
   console.log(req.cookies); // 쿠키 문자열이 { mycookie: 'test' } 객체 형태로 알아서 파싱이 되어있음
   console.log(req.signedCookies); // 서명(암호화)된 쿠키
+
 
   // 쿠키 설정하기🍪
   // 이전 방식: 'Set-cookie': `name=${encodeURIComponent(name)}; Expires=${expires.toGMTString()}; HttpOnly; Path=/`
@@ -114,6 +161,10 @@ app.get('/', (req, res) => {
   console.log(req.session.id);
   console.log(req.sessionID);
 
+
+  // 데이터 받기
+  console.log(req.data);
+  console.log(res.locals.data);
 
 
   res.sendFile(path.join(__dirname, '/index.html'))
