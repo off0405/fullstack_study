@@ -1,0 +1,102 @@
+<!-- 1. form 태그로 보내는 경우 -->
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- <form id="form" action="/upload" method="post" enctype="multipart/form-data"> -->
+  <!-- 파일 하나 -->
+  <!-- <input type="file" name="image"> -->
+
+  <!-- 여러 파일 -->
+  <!-- <input type="file" name="image" multiple> -->
+
+  <!-- input 태그를 여러 개 사용해서 name이 다른 경우 -->
+  <!-- <input type="file" name="image1">
+    <input type="file" name="image2">
+
+
+    <input type="text" name="title">
+    <button type="submit">UPLOAD🚀</button>
+  </form> -->
+
+  <br>
+  <hr><br>
+
+  <!-- ajax  ❗ -->
+
+  <div>
+    <form id="form" action="/upload" method="post">
+      <input type="file" id="name" name="image1" multiple>
+      <input type="file" id="name" name="image2" multiple>
+      <button type="submit">UPLOAD⚽</button>
+    </form>
+  </div>
+
+  <!-- 2. 자바스크립트 Ajax로 보내는 경우(비동기식) -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    // 1) 파일 한 개 
+    // document.getElementById('form').addEventListener('submit', async (e) => {
+    //   e.preventDefault() // submit 이벤트 기본 동작: 폼데이터를 서버로 전송하고 새로 고침
+    //   const formData = new FormData();
+    //   formData.append('image', e.target.image.files[0])
+    //   console.log(e.target.image.files[0]);
+    //   try {
+    //     await axios.post('/upload', formData)
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // })
+
+
+
+    // 2) 파일 여러 개
+    // for문
+    // document.getElementById('form').addEventListener('submit', async (e) => {
+    //   e.preventDefault() 
+    //   const formData = new FormData();
+    //   for (let i = 0; i < e.target.image.files.length; i++) {
+    //     formData.append('image', e.target.image.files[i])
+    //   }
+    //   try {
+    //     await axios.post('/upload', formData)
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // })
+
+    // for of문
+    // document.getElementById('form').addEventListener('submit', async (e) => {
+    //   e.preventDefault()
+    //   const formData = new FormData();
+    //   const fileList = e.target.image.files
+    //   for (const file of fileList) {
+    //     formData.append('image', file)
+    //   }
+    // })
+
+
+    // 3) 파일을 여러개(input 태그를 여러 개 사용해서 name이 다른 경우)
+    document.getElementById('form').addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const formData = new FormData();
+      formData.append('image1', e.target.image1.files[0])
+      formData.append('image2', e.target.image2.files[0])
+      try {
+        await axios.post('/upload', formData)
+      } catch (err) {
+        console.error(err);
+      }
+    })
+
+  </script>
+
+</body>
+
+</html>
