@@ -10,6 +10,8 @@ dotenv.config();
 // 라우터 가져오기
 const indexRouter = require('./routes') // indexRouter 가져오기(/index는 생략 가능)
 const userRouter = require('./routes/user') // userRouter
+const shopRouter = require('./routes/shop')
+const subRouter = require('./routes/board/sub')
 
 const app = express();
 
@@ -52,6 +54,26 @@ app.use(session({ // express-session: 요청마다 개인의 저장 공간을 �
 // 분리한 라우터들을 미들웨어로 등록
 app.use('/', indexRouter); // '/'로 요청이 들어오면 indexRouter로 
 app.use('/user', userRouter); // '/user'로 요청이 들어오면 userRouter로 
+app.use('/shop', shopRouter)
+app.use('/board/sub', subRouter)
+
+// Quiz2: 아래 라우터(API)들을 분리해보기(다른 파일로 추출)
+// app.get('/shop/shirts', (req, res) => {
+//   res.send('셔츠 판매 페이지');
+// });
+
+// app.get('/shop/pants', (req, res) => {
+//   res.send('바지 판매 페이지');
+// });
+
+// app.get('/board/sub/notice', (req, res) => {
+//   res.send('공지사항 게시판');
+// });
+// app.get('/board/sub/qna', (req, res) => {
+//   res.send('문의 게시판');
+// });
+
+
 
 
 app.use((req, res, next) => { // 404 에러 처리
