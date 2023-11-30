@@ -24,3 +24,61 @@ nav a {
 main {
   padding: 0 15px;
 }
+
+
+/* 글 목록 */
+.grey-bg {
+  background: #eee;
+}
+.white-bg {
+  background: white;
+  margin: 20px;
+  border-radius: 5px;
+}
+.list-box {
+  padding : 10px;
+  border-bottom: 1px solid#eee;
+}
+.list-box h4{
+  font-size: 16px;
+  margin: 5px;
+}
+.list-box p {
+  font-size: 13px;
+  margin: 5px;
+  color: grey;
+}
+
+/* 글 작성 */
+input, div {
+  box-sizing: border-box;
+}
+.form-box {
+  background : white;
+  padding : 25px;
+  margin: 20px;
+  border-radius: 8px;
+}
+.form-box input {
+  padding : 10px;
+  font-size: 16px;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.form-box button {
+  padding: 10px;
+  border : none;
+  background : lightgrey;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* 글 상세 */
+.detail-bg {
+  background: white;
+  padding: 15px;
+  margin: 20px;
+  border-radius: 8px;
+}

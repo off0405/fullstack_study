@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body class="grey-bg">
+  <!-- 상단바 넣기 -->
+  <!-- ejs 문법 중 include()쓰면 다른 ejs 파일에 있는 HTML을 넣을 수 있따 -->
+  <!-- 재사용이 많은 UI들은 모듈화를 시킨다~ -->
+  <%- include('nav') %>
+    <!-- (참고) 데이터 전달도 가능 -->
+    <!-- <%- include('nav.ejs', { name:'goni' })%> -->
+
+
+    <!-- 하드코딩 -->
+    <!-- <div class="white-bg">
+    <div class="list-box">
+      <h4>글제목임</h4>
+      <p>글내용임</p>
+    </div>
+
+    <div class="list-box">
+      <h4>글제목임</h4>
+      <p>글내용임</p>
+    </div>
+  </div> -->
+
+    <!-- 데이터 바인딩~ -->
+    <!-- 데이터가 없으면 에러 발생 => 옵셔널 체이닝 -->
+    <!-- <div class="white-bg">
+    <div class="list-box">
+      <h4>
+        <%= posts[0]?.title%>
+      </h4>
+      <p>
+        <%= posts[0]?.content%>
+      </p>
+    </div>
+
+    <div class="list-box">
+      <h4>
+        <%= posts[1]?.title%>
+      </h4>
+      <p>
+        <%= posts[1]?.content%>
+      </p>
+    </div>
+  </div> -->
+
+
+    <!-- 반복렌더링 -->
+    <div class="white-bg">
+      <% for (let i=0; i < posts.length; i++) { %>
+        <div class="list-box">
+          <h4>
+            <%= posts[i].title%>
+          </h4>
+          <p>
+            <%= posts[i].content%>
+          </p>
+        </div>
+        <% } %>
+
+    </div>
+
+</body>
+
+</html>
+
+
+
+<!-- 🤍🤍🤍정리🤍🤍🤍 -->
+<!-- 
+  <% %> : HTML 사이에 자바스크립트 문법을 쓸 때 (위에서 for문)
+  <%= %> : 값을 출력할 때 (HTML 요소를 넣으면 excaped 되서 문자로 출력)
+  <%- %> : 값을 출력할 때(HTML 요소를 넣으면 요소가 출력됨)
+            사용 예) include()같은 ejs가 제공하는 특수한 문법을 쓸 때
+-->
+<!-- 이 외에도 더 있지만 위 3가지가 90% 이상임 -->
