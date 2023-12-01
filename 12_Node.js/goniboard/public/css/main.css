@@ -7,6 +7,10 @@ a {
   color: black;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 nav {
   display: flex;
   padding: 15px;

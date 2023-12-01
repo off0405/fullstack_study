@@ -67,6 +67,10 @@
             <a href="/post/edit/<%= posts[i]._id %>">
               🎲수정
             </a>
+
+            <!-- 글 삭제 버튼 -->
+            <!-- data-(내가 원하는 속성 명): 사용자 정의 속성, HTML에 데이터 저장 시 주로 사용 -->
+            <span class="delete cursor-pointer" data-id="<%= posts[i]._id %>">🗑</span>
           </h4>
           <p>
             <%= posts[i].content%>
@@ -75,6 +79,9 @@
         <% } %>
 
     </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/list.js"></script>
 
 </body>
 

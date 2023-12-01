@@ -170,12 +170,24 @@ router.patch('/:id', async (req, res, next) => {
 })
 
 // 글 삭제 기능 만들기
-// 1) 
+// 1) 글 삭제 버튼 누르면 해당 글 삭제 쵸어 보내기
+// 2) 서버는 확인 후 해당 글을 DB에서 삭제
 router.delete('/:id', async (req, res, next) => {
   try {
-    await db.collection('post').deleteOne({})
-  } catch (error) {
+    await db.collection('post').deleteOne({
+      _id: new ObjectId(req.params.id)
+    })
+    res.json({
+      flag: true,
+      message: '삭제 성공'
+    })
 
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: '삭제 실패'
+    })
   }
 })
 
@@ -186,3 +198,17 @@ router.delete('/:id', async (req, res, next) => {
 
 
 module.exports = router;
+
+
+// 참고 ❕❗
+// HTML을 보여주는 방법(렌더링 하는 법)이 두가지가 있는데
+// 1. 서버에서 다 만들어서 보내기 (SSR) 서버에서 렌더링하여 완성된 HTML 파일을 로드
+// 2. 서버는 데이터만 보내고 브라우저에서 완성하기 (CSR) 렌더링이 클라이언트 쪽에서 일어난다
+// Ajax를 쓰면 서버가 보낸 데이터만 받아서 JS로 HTML을 동적으로 만들어서 현재 페이지에 CSR 구현 가능
+
+
+// 정리___ 서버로 데이터 보내는 방법
+// 1. ⭐ form 태그
+// 2. ⭐ Ajax - axios 라이브러리 사용
+// 3. ⭐ 라우트 매개변수(=URL Parameter)
+// 4. ⭐ 쿼리스트링
