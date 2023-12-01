@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/main.css">
+
+</head>
+
+<body class="grey-bg">
+  <%- include('nav.ejs')%>
+
+    <!-- form 태그를 이용하여 서버에 (동기식) 요청 보내는 법 -->
+    <!-- 1) action=/URL
+        2) method=GET, POST만 가능-->
+    <form id="write-form" class="form-box" action="/post/write" method="post">
+      <h4>글쓰기</h4>
+      <!-- input의 데이터를 보내는 방법
+        name 속성 필수 작성 (작명한 이름으로 서버에 데이터 전달)-->
+      <label for="title">제목</label>
+      <input type="text" id="title" name="title">
+
+      <label for="content">내용</label>
+      <input type="text" id="content" name="content">
+
+      <button type="submit">등록</button>
+    </form>
+
+    <!-- Quiz. write.js 만들어서 글 작성 기능을 AJAX 요청으로 바꿔보기 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/write.js"></script>
+
+</body>
+
+</html>

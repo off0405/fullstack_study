@@ -58,7 +58,15 @@
       <% for (let i=0; i < posts.length; i++) { %>
         <div class="list-box">
           <h4>
-            <%= posts[i].title%>
+            <!-- 글 제목 누르면 상세페이지로 이동하도록 링크 걸기 -->
+            <a href="/post/<%= posts[i]._id %>">
+              <%= posts[i].title%>
+            </a>
+
+            <!-- 글 수정 버튼 -->
+            <a href="/post/edit/<%= posts[i]._id %>">
+              🎲수정
+            </a>
           </h4>
           <p>
             <%= posts[i].content%>
