@@ -58,7 +58,7 @@ module.exports = () => { // app.js 의 passportConfig();로 실행됨
 // 다음은 로그인 이후의 과정
 // 1. 요청이 들어옴(어떠한 요청이든 상관없음)
 // 2. 라우터에 요청이 도달하기 전에 passport.session 미들웨어가 passport.deserializeUser 메서드 호출
-// 3. connect.sid 세션 쿠키를 읽고 세션 객체를 찾아서 req.session으로 만듦
-// 4. req.session에 저장된 아이디로 데이터베이스에서 사용자 조회
+// 3. connect.sid 세션 쿠키를 읽고 세션 ID로 세션 객체(req.session) 를 찾아서
+// 4. 그 안에 저장된 아이디로 데이터베이스에서 사용자 조회
 // 5. 조회된 사용자 정보를 req.user에 저장
 // 6. 라우터에서 req.user 객체 사용 가능
