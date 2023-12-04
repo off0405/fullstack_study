@@ -1,4 +1,4 @@
-const passport = require('pasport')
+const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 
@@ -23,7 +23,7 @@ module.exports = () => {
       }
 
       // 해싱할 비번(사용자가 입력한 비번)과 해싱된 비번(DB에 저장된 비번)을 비교
-      const result = await bcrypt.compare(passworld, existUser.password);
+      const result = await bcrypt.compare(password, existUser.password);
       if (!result) { // 비번이 틀리면
         return done(null, false, { message: '비밀번호가 일치하지 않습니다' })
       }
