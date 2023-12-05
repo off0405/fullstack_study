@@ -4,7 +4,7 @@ document.getElementById('write-form').addEventListener('submit', async (e) => {
   const content = e.target.content.value;
   const img = e.target.img.files[0]
 
-  const formData = new FormData()
+  const formData = new FormData() // multipart/form-data 타입으로 보냄
 
   formData.append('title', title)
   formData.append('content', content)
