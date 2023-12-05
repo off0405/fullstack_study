@@ -35,8 +35,22 @@ const router = express.Router()
 
 // GET /post/write 라우터
 router.get('/write', (req, res) => {
-  res.render('write')
+  // res.render('write')
+
+
+  // Quiz
+  // 로그인 한 사람만 글을 작성할 수 있게 만들고 싶으면?
+  // 로그인한 경우엔 req.user 안에 뭔가 들어있음
+  // 반대로 비어있으면 로그인 안 한 상태
+  if (req.user) {
+    res.render('write')
+  } else {
+    res.status(401).send('로그인 필요')
+  }
 })
+
+
+
 
 
 // POST / post / write 라우터

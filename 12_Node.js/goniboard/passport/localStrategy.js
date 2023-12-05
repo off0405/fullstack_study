@@ -16,7 +16,7 @@ module.exports = () => {
     passReqToCallback: false // => 아이디 비번 외에 다른 것도 제출 받아서 검증하고 싶을 때 참고
   }, async (username, password, done) => { // passport.authenticate('local')() 사용 시 호출되는 콜백함수
     try {
-      //  사용자가 입력한 아이디(usernmae), 비번(password)을 검사하는 코드를 적는 곳
+      //  사용자가 입력한 아이디(usernmae), 비번(password)을 검사하는 코드를 적는 곳. 기존에 있는거랑 중복확인
       const existUser = await db.collection('user').findOne({ username })
       if (!existUser) { // 일치하는 아이디가 없으면
         return done(null, false, { message: '가입되지 않은 회원입니다' }) // 회원 인증 실패 시 두번째 인자값에 false를 넣어준다.그래야 앞에 !user 이프문 코드 실행
