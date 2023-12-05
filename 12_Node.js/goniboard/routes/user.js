@@ -113,11 +113,7 @@ router.post('/login', checkIdAndPw, (req, res, next) => {
 
 // GET /user/logout
 // 우발적, 악의적 로그아웃을 방지하려면 GET 요청 대신 POST 또는 DELETE 요청 사용하면 좋음 !
-<<<<<<< HEAD
 router.get('/logout', isNotLoggedIn, (req, res, next) => {
-=======
-router.get('/logout', (req, res, next) => {
->>>>>>> c2e174efe48da2b351dc6949f10f1a26cd8e493e
   // logout(): req.user 객체와 req.session 객체를 제거
   req.logout((logoutError) => { // 제거 후 콜백 함수가 실행됨
     if (logoutError) return next(logoutError)
@@ -143,21 +139,10 @@ module.exports = router;
 // 프로필 페이지 레이아웃은 자유롭게 만드는데 현재 로그인된 사용자의 아이디는 표기할 것
 // GET /user/profile
 
-<<<<<<< HEAD
-router.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile')
-
-  // if (req.user) {
-  //   res.render('profile')
-  // } else {
-  //   req.status(401).send('로그인 필요')
-  // }
-=======
 router.get('/profile', (req, res) => {
   if (req.user) {
     res.render('profile')
   } else {
     req.status(401).send('로그인 필요')
   }
->>>>>>> c2e174efe48da2b351dc6949f10f1a26cd8e493e
 })
