@@ -188,7 +188,7 @@ router.get('/edit/:id', async (req, res, next) => {
   // DB에서 글 가져오기
   try {
     const post = await db.collection('post').findOne({ _id: new ObjectId(req.params.id) }) // objectId 객체로 만듦
-    console.log(post)
+    console.log(req.params.id)
 
     if (!post) {
       const error = new Error('데이터 없음')
@@ -329,20 +329,84 @@ router.get('/', async (req, res) => {
 router.get('/search', async (req, res) => {
   console.log(req.query.keyword);
 
-  const { keyword } = req.query
+  const { keyword } = req.query // 검색어!
+  const currentPage = req.query.page || 1; // 현재 페이지
+  const postsPerPage = 3;
+
+
 
   // 검색어와 "정확히" 일치하는 document를 찾음
   // const posts = await db.collection('post').find({ title: keyword }).toArray()
   // console.log(posts);
 
   // 검색어를 "포함한" document를 찾음 => 정규 표현식 사용
-  const posts = await db.collection('post')
-    .find({ title: { $regex: keyword } }).toArray()
+  // const posts = await db.collection('post')
+  //   .find({ title: { $regex: keyword } }).toArray()
   // 문제점: document가 매우 많을 경우 find()를 써서 _id가 아닌 다른 기준으로 document를 찾는건 느려터짐
   // 예: document가 1억개 있으면 1억개를 다 뒤져봄
   // 해결책: 데이터베이스에 index를 만들어두면 됨
 
-  res.render('search', { posts })
-})
+  // 3. index를 사용한 검색
+  // $text: text index를 갖다 쓰겠다는 의미 
+  // $search: 검색 키워드
+  // const posts = await db.collection('post').find({ $text: { $search: keyword } }).toArray()
+
+  // 참고_ find() 성능 평가
+  // explain()
+
+  // const result1 = await db.collection('post').find({ title: keyword }).explain('executionStats')
+  // const result2 = await db.collection('post').find({ $text: { $search: keyword } }).explain('executionStats')
+
+  // 4. search index를 사용한 검색
+  // find({ 조건 }) -> aggregate([{ 조건1 }, { 조건2 }, { 조건3 }])
+  // 장점 : 여러 상세한 조건을 배열로 넣을 수 있음 -> pipeline 이라고 부름
+  // const posts = await db.collection('post').aggregate([
+  //   {
+  //     $search: { // search index 이용 full-text search를 수행
+  //       index: 'title_index',
+  //       text: {
+  //         query: keyword, // 검색어
+  //         path: 'title'// 검색할 필드 이름
+  //       }
+
+  //     }
+  //   }, // 기본적으로 검색어와 관련도 점수가 높은 순으로 정렬됨
+  // aggregate에 쓸 수 있는 연산자(find에서는 메서드가 지원됨)
+  // { $sort: { _id: 1 } }, // 검색 결과 정렬(1: 오름차순, -1: 내림차순)
+  // { $skip: 5 }, // 건너뛰기 5개
+  //   { $limit: 5 }, // 결과수 제한
+  //   { $project: { title: 1 } } // 조회할 필드 선택(1: 추가, 0: 제외)
+  // ]).toArray()
+
+  // const totalCount = await db.collection('post').count({})
+  // const numOfPage = Math.ceil(totalCount / postsPerPage)
+  const query = {
+    $search: {
+      index: 'title_index',
+      text: {
+        query: keyword,
+        path: 'title'
+      }
+    }
+  };
+
+  const posts = await db.collection('post').aggregate([
+    query,
+    { $skip: (currentPage - 1) * postsPerPage },
+    { $limit: postsPerPage },
+  ]).toArray();
+
+  const result = await db.collection('post').aggregate([
+    query,
+    { $count: "searchCount" }
+  ]).toArray();
+  console.log(result);
+  const totalCount = result[0].searchCount;
+  const numOfPage = Math.ceil(totalCount / postsPerPage); // 페이지 수
+
+  res.render('search', { posts, numOfPage, currentPage, keyword });
+});
+
+
 module.exports = router;
 
