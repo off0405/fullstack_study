@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body class="grey-bg">
+
+  <%- include('nav') %>
+
+    <input type="text" class="search">
+    <button type="button" class="search-btn">검색</button>
+
+    <h4 style="margin-left: 20ox;"> 검색</h4>
+
+    <!-- 반복렌더링 -->
+    <div class="white-bg">
+      <% for (let i=0; i < posts.length; i++) { %>
+        <div class="list-box">
+          <h4>
+            <!-- 글 제목 누르면 상세페이지로 이동하도록 링크 걸기 -->
+            <a href="/post/detail/<%= posts[i]._id %>">
+              <%= posts[i].title%>
+            </a>
+
+            <!-- 글 수정 버튼 -->
+            <a href="/post/edit/<%= posts[i]._id %>">
+              🌴
+            </a>
+
+            <!-- 글 삭제 버튼 -->
+            <!-- data-(내가 원하는 속성 명): 사용자 정의 속성, HTML에 데이터 저장 시 주로 사용 -->
+            <span class="delete cursor-pointer" data-id="<%= posts[i]._id %>">🗑</span>
+          </h4>
+          <p>
+            <%= posts[i].content%>
+          </p>
+        </div>
+        <% } %>
+
+    </div>
+
+
+
+
+    <!-- 다음 버튼 -->
+    <div class="next-bg">
+      <a href="/post?nextId=<%= posts[posts.length - 1]?._id %>">다음</a>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/list.js"></script>
+
+</body>
+
+</html>

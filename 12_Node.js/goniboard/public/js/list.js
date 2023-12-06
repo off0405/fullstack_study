@@ -26,3 +26,13 @@ document.querySelectorAll('.delete').forEach((deleteBtn, index) => {
     }
   });
 });
+
+// 참고 HTML 보여주는 법 2가지
+// 1) 서버에서 다 만들어서 보내기 css
+// 2) 서버는 데이터만 보내고 브라우저에서 완성하기(CSR)
+// ajax를 쓰면 서버가 보낸 데이터만 받아 js로 html 동적으로 만들어서 현재 페이지에 csr 구현 가능
+
+document.querySelector('.search-btn').addEventListener('click', async (e) => {
+  const keyword = document.querySelector('.search').value
+  location.href = `/post/search?keyword=${keyword}` // URL 생성으로 알아서 GET요청 해서 서버로 가게 됌
+})

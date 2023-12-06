@@ -97,7 +97,7 @@ router.get('/write',
 // 업로드 완료 시 이미지의 URL도 생성해줌(req.file에 들어있음)
 router.post('/write', isLoggedIn, upload.single('img'), async (req, res, next) => {
   console.log(req.file); // 업로두 후 s3 객체 정보
-  console.log(req.file.location); // 이미지의 URL 정보, img 태그 src 속성에 넣으면 동작
+  // console.log(req.file.location); // 이미지의 URL 정보, img 태그 src 속성에 넣으면 동작
 
 
   console.log(req.body); // 클라이언트가 보낸 데이터 -> 요청 본문에 담김 -> body-parser가 분석해서 req.body에 객체로 저장
@@ -118,7 +118,7 @@ router.post('/write', isLoggedIn, upload.single('img'), async (req, res, next) =
       await db.collection('post').insertOne({
         title,
         content,
-        imgUrl: req.file.location // 이미지 URL을 글과 함꼐 DB에 저장
+        // imgUrl: req.file.location // 이미지 URL을 글과 함께 DB에 저장
       })
       // res.redirect('/post'); // 동기식 요청이면 다른 페이지로 이동
 
@@ -143,7 +143,7 @@ router.post('/write', isLoggedIn, upload.single('img'), async (req, res, next) =
 // 2) { _id: 글id } 조건으로 글을 DB에서 찾아서
 // 3) 해당 글을 ejs 파일에 꽂아서 보내줌
 
-router.get('/:id', async (req, res, next) => {
+router.get('/detail/:id', async (req, res, next) => {
   // res.render('detail');;;;;;;;;;;;;;;;;;;;;;;;
 
   // DB에서 글 가져오기
@@ -172,7 +172,7 @@ router.get('/:id', async (req, res, next) => {
     res.render('detail', { post })
 
   } catch (err) { // 1)번에 대한 예외 처리
-    err.message = '되돌아가라.'
+    err.message = '잘못된 url 입니다.'
     err.status = 400; // 응답코드 400번대는 클라이언트 에러
     // 400 : 유저의 잘못된 문법으로 서버가 요청을 이해할 수 없을 때
     next(err)
@@ -191,7 +191,7 @@ router.get('/edit/:id', async (req, res, next) => {
     console.log(post)
 
     if (!post) {
-      const error = new Error('있을게 없다')
+      const error = new Error('데이터 없음')
       error.status = 404;
       next(error)
     }
@@ -199,7 +199,7 @@ router.get('/edit/:id', async (req, res, next) => {
     res.render('edit', { post })
 
   } catch (err) {
-    err.message = '되돌아가라.'
+    err.message = '잘못된 url 입니다.'
     err.status = 400;
     next(err)
   }
@@ -235,7 +235,7 @@ router.patch('/:id', async (req, res, next) => {
 // 글 삭제 기능 만들기
 // 1) 글 삭제 버튼 누르면 해당 글 삭제 쵸어 보내기
 // 2) 서버는 확인 후 해당 글을 DB에서 삭제
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', async (req, res) => {
   try {
     await db.collection('post').deleteOne({
       _id: new ObjectId(req.params.id)
@@ -291,7 +291,7 @@ router.get('/', async (req, res) => {
   // https://yonghwankim-dev.tistory.com/578 -> 참고 블로그
   // 페이지 번호는 쿼리 스트링 또는 URL 파라미터 사용
   // 1 -> 0, 2 -> 5, 3 -> 10
-  // const posts = await db.collection('post').find({}).skip((req.query.page - 1) * 5).limit(5).toArray();
+  const posts = await db.collection('post').find({}).skip((req.query.page - 1) * 5).limit(5).toArray();
 
   // 페이지 계산
   // 1 ~ 5 -> 1 / 6 ~ 10 -> 2
@@ -306,22 +306,43 @@ router.get('/', async (req, res) => {
   // => 너무 많이 skip 하지 못하게 막거나 다른 페이지네이션 방법 구현
   // 장점: 매우 빠르다(_id 기준으로 뭔가 찾는건 DB가 가장 빠르게 하는 작업임)
   // 단점: 바로 다음 게시물만 가져올 수 있어서 1페이지 보다가 3페이지로 이동 불가
-  let posts;
-  if (req.query.nextId) {
-    posts = await db.collection('post')
-      .find({ _id: { $gt: new ObjectId(req.query.nextId) } }) // ObjectId는 대소구분 가능
-      .limit(5).toArray()
-  } else {
-    posts = await db.collection('post').find().limit(5).toArray() // 처음 5개
-  }
+  // let posts;
+  // if (req.query.nextId) {
+  //   posts = await db.collection('post')
+  //     .find({ _id: { $gt: new ObjectId(req.query.nextId) } }) // ObjectId는 대소구분 가능
+  //     .limit(5).toArray()
+  // } else {
+  //   posts = await db.collection('post').find().limit(5).toArray() // 처음 5개
+  // }
 
 
   res.render('list', { posts, numOfPage, currentPage })
 })
 
 
+// 검색 기능 만들기
+// 1) 검색 UI (input, button)에서 서버로 검색어 전송
+// 2) 서버는 검색어가 포함된 document를 찾음
+// 3) 그 결과를 ejs에 넣어서 보내줌
 
+// GET/post/search
+router.get('/search', async (req, res) => {
+  console.log(req.query.keyword);
 
+  const { keyword } = req.query
 
+  // 검색어와 "정확히" 일치하는 document를 찾음
+  // const posts = await db.collection('post').find({ title: keyword }).toArray()
+  // console.log(posts);
+
+  // 검색어를 "포함한" document를 찾음 => 정규 표현식 사용
+  const posts = await db.collection('post')
+    .find({ title: { $regex: keyword } }).toArray()
+  // 문제점: document가 매우 많을 경우 find()를 써서 _id가 아닌 다른 기준으로 document를 찾는건 느려터짐
+  // 예: document가 1억개 있으면 1억개를 다 뒤져봄
+  // 해결책: 데이터베이스에 index를 만들어두면 됨
+
+  res.render('search', { posts })
+})
 module.exports = router;
 

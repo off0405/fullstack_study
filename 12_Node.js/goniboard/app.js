@@ -5,6 +5,7 @@ const dotenv = require('dotenv')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const passport = require('passport')
+const MongoStore = require('connect-mongo')
 
 // 기본적인 서버 구조 작성하기
 // 1) dotenv 설정
@@ -38,7 +39,12 @@ app.use(session({
   secret: process.env.COOKIE_SECRET,
   cookie: {
     httpOnly: true,
+    secure: false,
   },
+  store: MongoStore.create({
+    mongoUrl: `mongodb+srv://${process.env.MONGO_ID}:${process.env.MONGO_PASSWORD}@cluster0.sqvq6zj.mongodb.net`, // url 전체를 .env에 저장해도 상관무
+    dbName: 'board'
+  })
 }))
 
 // passport 미들웨어 설정
