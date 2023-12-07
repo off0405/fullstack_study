@@ -97,7 +97,7 @@ router.get('/write',
 // 업로드 완료 시 이미지의 URL도 생성해줌(req.file에 들어있음)
 router.post('/write', isLoggedIn, upload.single('img'), async (req, res, next) => {
   console.log(req.file); // 업로두 후 s3 객체 정보
-  // console.log(req.file.location); // 이미지의 URL 정보, img 태그 src 속성에 넣으면 동작
+  console.log(req.file?.location); // 이미지의 URL 정보, img 태그 src 속성에 넣으면 동작
 
 
   console.log(req.body); // 클라이언트가 보낸 데이터 -> 요청 본문에 담김 -> body-parser가 분석해서 req.body에 객체로 저장
@@ -118,7 +118,27 @@ router.post('/write', isLoggedIn, upload.single('img'), async (req, res, next) =
       await db.collection('post').insertOne({
         title,
         content,
-        // imgUrl: req.file.location // 이미지 URL을 글과 함께 DB에 저장
+        // imgUrl: req.file ? req.file.location : '', // 이미지 URL을 글과 함께 DB에 저장
+        imgUrl: req.file?.location || '', // 이미지 URL을 글과 함께 DB에 저장
+        // 글 등록 시 작성자 정보 넣기
+        user: req.user._id,
+        username: req.user.username,
+        // username(수정 가능한 정보라고 가정) 넣었을 때 문제점: 
+        // 해당 유저가 글을 여러개 작성했는데 username이 바뀌면? 전부 찾아서 수정해야함
+        // 관계형 DB: 사용자의 _id만 적어두고 JOIN을 써서 사용자의 정보를 가져와 합침
+        // 비관계형 DB: 그냥 사용자 정보를 그대로 넣는 것이 관습임. 장점은 다른 컬렌션을 찾아 볼 필요 없음
+        // 단점은 바뀐 정보를 전부 찾아서 업데이트 하거나, 업데이트가 안됐으면 정보가 부정확 할 수 있다.
+
+        // (비관계형 DB일때)개발자 선택 사항임
+        // 1. DB 입출력 속도 up, 데이터 정확도 down => 바뀔 수 있는 정보도 같이 저장
+        // 2. DB 입출력 속도 down, 데이터 정확도 up => _id 값만 저장
+
+        //2번을 선택하면 그 안에서도 선택지가 다양함
+        // 1) findOne을 2번 쓰던가(글도 가져오고, 사용자도 가져오고)
+        // 2) 몽구스의 populate , 몽고디비의 aggregate 연산자 중 $lookup
+
+
+
       })
       // res.redirect('/post'); // 동기식 요청이면 다른 페이지로 이동
 
@@ -161,6 +181,12 @@ router.get('/detail/:id', async (req, res, next) => {
     const post = await db.collection('post').findOne({ _id: new ObjectId(req.params.id) }) // objectId 객체로 만듦
     console.log(post)
 
+    const comments = await db.collection('comment').find({
+      postId: new ObjectId(req.params.id)
+    }).toArray() // to array를 써야만 데이터를 배열로 만들어줌
+
+
+
     // 2)번에 대한 예외 처리
     if (!post) {
       const error = new Error('있을게 없다')
@@ -169,7 +195,7 @@ router.get('/detail/:id', async (req, res, next) => {
     }
 
     // Quiz. 데이터 꽂아서 보내고 바인딩하기
-    res.render('detail', { post })
+    res.render('detail', { post, comments })
 
   } catch (err) { // 1)번에 대한 예외 처리
     err.message = '잘못된 url 입니다.'
@@ -211,11 +237,19 @@ router.patch('/:id', async (req, res, next) => {
     const content = req.body.content
 
     // 어떤 document를 찾아서, 어떤 내용으로 수정할지 인자값 2개 전달
-    await db.collection('post').updateOne({
-      _id: new ObjectId(req.params.id)
+    const result = await db.collection('post').updateOne({
+      _id: new ObjectId(req.params.id),
+      user: new ObjectId(req.user._id)
     }, {
       $set: { title, content }
     })
+
+    if (modifiedCount === 0) {
+      return res.json({
+        flag: false,
+        message: '삭제 실패'
+      })
+    }
 
     res.json({
       flag: true,
@@ -235,11 +269,28 @@ router.patch('/:id', async (req, res, next) => {
 // 글 삭제 기능 만들기
 // 1) 글 삭제 버튼 누르면 해당 글 삭제 쵸어 보내기
 // 2) 서버는 확인 후 해당 글을 DB에서 삭제
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req, res, next) => {
   try {
-    await db.collection('post').deleteOne({
-      _id: new ObjectId(req.params.id)
+    const result = await db.collection('post').deleteOne({
+      _id: new ObjectId(req.params.id),
+      user: new ObjectId(req.user._id) // 본인이 쓴 글만 삭제되도록 조건 추가
     })
+
+    // if (result.deletedCount === 0) {
+    //   return res.status = 500
+    // }
+
+    if (result.deletedCount === 0) {  // list.js에서 받아서 alert 처리
+      return res.json({
+        flag: false,
+        message: '삭제 실패'
+      })
+    }
+
+    // if (result.deletedCount === 0) {
+    //   throw new Error('삭제 실패');
+    // }
+
     res.json({
       flag: true,
       message: '삭제 성공'
@@ -249,6 +300,7 @@ router.delete('/:id', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({
+      flag: false,
       message: '삭제 실패'
     })
   }
@@ -407,6 +459,58 @@ router.get('/search', async (req, res) => {
   res.render('search', { posts, numOfPage, currentPage, keyword });
 });
 
+// 댓글 기능 만들기
+// 1) 댓글 작성 UI에서 등록 누르면 서버로 댓글 전송
+// 2) 서버는 받은 댓글을 DB에 저장
+// 3) 글 상세 페이지에서 댓글 가져와 보여주기
 
+// 이 때 댓글을 DB 어디에 저장할 것인지?
+// 1. post 컬렉션 document 안에 comments 필드를 만들어서 배열로 저장
+// 근데 이 방식은 댓글이 많아지면 문제가 복잡해지고 비효율적임
+// 1) 배열에서 원하는 항목 수정/삭제가 어려움
+// 2) 배열의 일부만 가져올 수 없음(예: 댓글의 처음 5개만 가져오기)
+// 3) document 1개 용량 제한 16MB
+
+// 2. comment 컬렉션 따로 만들기(권장)
+// 어떤 글의 댓글인지 해당 글의 _id도 함께 저장하기(관계설정)
+
+// POST /post/comment
+router.post('/comment', async (req, res, next) => {
+  try {
+    const { postId, content } = req.body // detail.ejs의 input name과 일치시킴.
+    // console.log(req.user._id);
+    console.log(postId);
+
+    await db.collection('comment').insertOne({
+      content,
+      authorId: req.user._id,
+      author: req.user.username,
+      postId: new ObjectId(postId)
+    })
+
+    res.redirect(`/post/detail/${postId}`)
+  } catch (err) {
+    console.error(err);
+    next(err)
+  }
+})
+
+router.delete('/comment', async (req, res, next) => {
+  try {
+    const { postId, content } = req.body
+
+    await db.collection('comment').deleteOne({
+      content,
+      authorId: req.user._id,
+      author: req.user.username,
+      postId: new ObjectId(postId)
+    })
+
+    res.redirect(`/post/detail/${postId}`)
+  } catch (error) {
+    console.error(err);
+    next(err)
+  }
+})
 module.exports = router;
 

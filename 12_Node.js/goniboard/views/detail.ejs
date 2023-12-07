@@ -19,11 +19,35 @@
       <h3>
         <%= post.content %>
       </h3>
+      <div>
+        <img src="<%= post.imgUrl %>" alt="img" width="300px">
+
+        <hr style="margin-top: 60px;">
+
+
+
+        <div id="comment">
+          <p>
+            <% for (let i=0; i < comments.length; i++) { %>
+              <strong>
+                <%= comments[i].author%>
+              </strong>
+              <%= comments[i].content %>
+          </p>
+          <% if (comments[i].author===user?.username) { %>
+            <div data-id="<%= comments[i]._id %>">❌</div>
+            <% } %>
+        </div>
+        <% } %>
+
+          <form action="/post/comment" method="post">
+            <input type="hidden" name="postId" value="<%= post._id %>">
+            <input type="text" name="content">
+            <button type="submit">등록</button>
+          </form>
+      </div>
     </div>
 
-    <div>
-      <img src="<%= post.imgUrl %>" alt="img" width="300px">
-    </div>
 
 </body>
 

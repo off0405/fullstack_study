@@ -69,14 +69,17 @@
               <%= posts[i].title%>
             </a>
 
-            <!-- 글 수정 버튼 -->
-            <a href="/post/edit/<%= posts[i]._id %>">
-              🌴
-            </a>
+
 
             <!-- 글 삭제 버튼 -->
             <!-- data-(내가 원하는 속성 명): 사용자 정의 속성, HTML에 데이터 저장 시 주로 사용 -->
-            <span class="delete cursor-pointer" data-id="<%= posts[i]._id %>">🗑</span>
+            <!-- user = app.js 미들웨어로 req.user로 저장해놓은것 활용 -->
+            <a href="/post/edit/<%= posts[i]._id %>">🌴</a>
+            <% if (posts[i].username===user?.username) { %>
+              <!-- 글 수정 버튼 -->
+              <span class="delete cursor-pointer" data-id="<%= posts[i]._id %>">🗑</span>
+              <% } %>
+
           </h4>
           <p>
             <%= posts[i].content%>
