@@ -34,6 +34,15 @@ router.get('/delete-all', async (req, res) => {
   }
 })
 
+// GET /cors
+router.get('/cors', (req, res) => {
+  // res.setHeader('Access-Controll-Allow-Origin', 'http://localhost:3000')
+  res.send('데이터 응답 테스트')
+})
+
+
+
+
 // DB에 댓글 전체삭제하기
 router.get('/delete-all-comment', async (req, res) => {
   try {

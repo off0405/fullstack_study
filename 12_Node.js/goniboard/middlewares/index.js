@@ -26,6 +26,12 @@ const isNotLoggedIn = (req, res, next) => {
   }
 }
 
+
+
+
+
+
+
 // Quiz: 회원가입 및 로그인 시 사용자가 아이디, 비번을 전송하고 있는데
 // 아이디와 비번이 비어있으면 '내용을 입력하세요' 라고 응답해주는 미들웨어 만들어보기
 const checkIdAndPw = (req, res, next) => {

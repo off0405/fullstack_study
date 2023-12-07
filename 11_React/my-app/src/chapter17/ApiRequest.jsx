@@ -20,7 +20,10 @@ function ApiRequest(props) {
   //  2. async / await로 리팩터링
   const handleRequestByIdAsync = async (id) => {
     try {
-      const aaa = await axios.get(`https://jsonplaceholder.typicode.com/photos/${id}`) //
+      // const aaa = await axios.get(`https://jsonplaceholder.typicode.com/photos/${id}`) //
+      const aaa = await axios.get(`http://localhost:8088/cors`, {
+        withCredentials: true
+      }) //
       setData(aaa.data) //
     } catch (err) {
       console.error(err);
