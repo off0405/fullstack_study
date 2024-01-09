@@ -1,4 +1,5 @@
 import { connect } from "@/database"
+import ListItem from "./ListItem";
 
 export default async function List() {
   // 참고) DB 입출력 코드는 server 컴포넌트에서만 쓰기
@@ -9,7 +10,7 @@ export default async function List() {
   
   return (
     <div className="list-bg">
-      <div className="list-item">
+      {/* <div className="list-item">
         <h4>글 제목</h4>
         <p>글 내용</p>
       </div>
@@ -20,7 +21,24 @@ export default async function List() {
       <div className="list-item">
         <h4>글 제목</h4>
         <p>글 내용</p>
-      </div>
+      </div> */}
+
+        {/* {posts.map((post, index) => {
+          return (
+            <div key={post._id.toString()} className="list-item">
+              <h4>{post.title}</h4>
+              <p>{post.content}</p>
+            </div>
+        )
+        })} */}
+        {posts.map((post) => {
+          return (
+            // <ListItem key={post._id.toString()} title={post.title} content = {post.content} />
+            <ListItem key={post._id.toString()} post={post} />
+        )
+        })}
+      
+      {/* ListItem 컴포넌트로 추출 */}
     </div>
   )
 }
