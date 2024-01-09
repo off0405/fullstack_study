@@ -5,7 +5,7 @@ const { MongoClient } = require('mongodb');
 // mongodb+srv://root:<password>@cluster0.sqvq6zj.mongodb.net/?retryWrites=true&w=majority
 
 const { MONGO_ID, MONGO_PASSWORD } = process.env;
-const url = `mongodb+srv://${MONGO_ID}:${MONGO_PASSWORD}@cluster0.sqvq6zj.mongodb.net`
+const url = `mongodb+srv://root:root2023@cluster0.sqvq6zj.mongodb.net`
 const client = new MongoClient(url);
 
 const connect = async () => {
@@ -18,3 +18,11 @@ const connect = async () => {
 }
 
 module.exports = { client, connect }
+
+
+PORT=8088
+COOKIE_SECRET=goniboardsecret
+MONGO_ID=root
+MONGO_PASSWORD=root2023
+AWS_ACCESS_KEY=AKIA4QDOVY7NETKZNV24
+AWS_SECRET_KEY=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
