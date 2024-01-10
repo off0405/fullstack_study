@@ -26,3 +26,7 @@ export default function ListItem(props) {
 // => 이때 상세페이지 URL은? /detail/123
 // => React: URL 파라미터, Express: 라우트 파라미터
 // => Next.js: Dynamic Routes를 사용 -> 파일 또는 폴더 이름을 대괄호로 묶어 생성 []
+// 그 외
+// \[변수명1]\[변수명2]\[변수명3]
+// [...변수명]: Catch-all
+// [[...변수명]]: Optional Catch-all
