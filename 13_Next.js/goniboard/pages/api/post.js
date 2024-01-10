@@ -21,7 +21,10 @@ export default async function handler(req, res) {
 
     // DB 에외처리
     try {
-      await db.collection('post').insertOne({ title, content  })
+
+      await db.collection('post').insertOne({ title, content })
+
+      // 응답과 동시에 페이지를 이동시키기
       res.redirect(302, '/list') // 응답코드 생략 시 기본값: 307(Temporary redirect)
       // res.status(200).json({ message: 'postpost!' })
       
@@ -30,17 +33,4 @@ export default async function handler(req, res) {
       res.status(500).json({ flag: false, message: '등록 실패' })
     }
   }
-
-  // 응답과 동시에 페이지를 이동시키기
-
-
-  
-  
-
-  // GET/POST 요청에 따라 다른 코드를 실행하고 싶으면?
-  // if문 또는 switch문 사용
-  // if (req.method === 'GET') {
-    
-  // }
-
 }
