@@ -5,8 +5,16 @@ export default async function List() {
   // 참고) DB 입출력 코드는 server 컴포넌트에서만 쓰기
   const client = await connect
   const db = await client.db('board')
-  const posts = await db.collection('post').find().toArray()
-  console.log(posts);
+  let posts = await db.collection('post').find().toArray()
+  console.log(posts); // 수정 전
+
+  // 경고 해결하기: Only plain objects can be passed to Client Components from SErver Components.
+  posts = posts.map((post) => {
+    post._id = post._id.toString()
+    return post
+  })
+  console.log(posts); // 수정 후
+
   
   return (
     <div className="list-bg">

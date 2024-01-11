@@ -1,8 +1,26 @@
+'use client'
+
 import Link from "next/link"
 import DetailButton from "./DetailButton"
+import axios from "axios"
+import { useRouter } from "next/navigation"
 
 export default function ListItem(props) {
   const { post } = props
+
+  const router = useRouter()
+  
+  const handleDelete = async () => { 
+    // 1) query string
+    // await axios.delete(`/api/post?postid=${post._id}`)
+    
+    // 2) URL 파라미터
+    await axios.delete(`/api/post/${post._id}`)
+    // e.target.parentElement.remove() // 요소 제거
+    // location.href = '/list' // 다시 list로 이동 (새로고침 발생)
+    router.refresh() // soft refresh
+  }
+
   return(
       <div className="list-item">
         {/* 페이지를 이동하는 방법(1) - Link 컴포넌트 */}
@@ -20,8 +38,7 @@ export default function ListItem(props) {
       <Link href={`/edit/${post._id}`}>🔨</Link>
       
       {/* 삭제 버튼 */}
-      <span className="cursor-pointer">🗑</span>
-      
+      <span className="cursor-pointer" onClick={()=>{handleDelete()} }>🗑</span>
         <p>{post.content}</p>
       </div>
   )
@@ -57,3 +74,9 @@ export default function ListItem(props) {
 //   - 단점 : 검색 노출이 잘 안될 수 있음
 //   - useEffect를 쓰면 HTML 렌더링 이후에 실행되기 때문에 페이지 방문 시 텅 빈 HTML이 먼저 보임
 //   - 검색엔진 봇이 방문 시 수집할 데이터가 없어 수집이 느림
+
+
+// quiz.
+// 글 삭제 기능 완성하기
+// 1) /api/post?postId=글id로 DELETE 요청 시
+// 2) /api/post/글id로 DELETE 요청 시
