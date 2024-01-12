@@ -1,0 +1,6 @@
+1. Login을 담당하는 라우터의 콜백함수로 -> passport.authenticate()메소드 실행
+2. passport.authenticate() -> LocalStartegy에 전달된 콜백함수 실행
+3. passport.serializeUser() 실행
+4. -> 세션 객체 내부 passport 프로퍼티에 cookie와 식별자를 매칭시켜 보관
+5. 매 요청마다 passport.deserializeUser()가 실행되어
+6. 세션 객체에 저장된 식별자를 통해 user에 대한 데이터를 찾아 req.user에 넣어줌
